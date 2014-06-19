@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619182539) do
+ActiveRecord::Schema.define(version: 20140619235746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1079,7 +1079,7 @@ ActiveRecord::Schema.define(version: 20140619182539) do
   add_index "transaccions", ["tipo_trans_id"], name: "index_transaccions_on_tipo_trans_id", using: :btree
   add_index "transaccions", ["transaccion_id"], name: "index_transaccions_on_transaccion_id", using: :btree
 
-  create_table "usuarios", force: true do |t|
+  create_table "usuario", force: true do |t|
     t.integer  "usuario_id"
     t.integer  "comuna_id"
     t.string   "usuario_nombre"
@@ -1097,10 +1097,13 @@ ActiveRecord::Schema.define(version: 20140619182539) do
     t.integer  "usuario_bloque"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "spree_api_key",          limit: 48
+    t.integer  "ship_address_id"
+    t.integer  "bill_address_id"
   end
 
-  add_index "usuarios", ["comuna_id"], name: "index_usuarios_on_comuna_id", using: :btree
-  add_index "usuarios", ["usuario_id"], name: "index_usuarios_on_usuario_id", using: :btree
+  add_index "usuario", ["comuna_id"], name: "index_usuarios_on_comuna_id", using: :btree
+  add_index "usuario", ["usuario_id"], name: "index_usuarios_on_usuario_id", using: :btree
 
   create_table "valors", force: true do |t|
     t.integer  "valor_id"

@@ -1079,7 +1079,7 @@ ActiveRecord::Schema.define(version: 20140620024846) do
   add_index "transaccions", ["tipo_trans_id"], name: "index_transaccions_on_tipo_trans_id", using: :btree
   add_index "transaccions", ["transaccion_id"], name: "index_transaccions_on_transaccion_id", using: :btree
 
-  create_table "usuarios", force: true do |t|
+  create_table "usuario", force: true do |t|
     t.integer  "usuario_id"
     t.integer  "comuna_id"
     t.string   "usuario_nombre"
@@ -1116,10 +1116,10 @@ ActiveRecord::Schema.define(version: 20140620024846) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "usuarios", ["comuna_id"], name: "index_usuarios_on_comuna_id", using: :btree
-  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
-  add_index "usuarios", ["usuario_e_mail"], name: "index_usuarios_on_usuario_e_mail", unique: true, using: :btree
-  add_index "usuarios", ["usuario_id"], name: "index_usuarios_on_usuario_id", using: :btree
+  add_index "usuario", ["comuna_id"], name: "index_usuario_on_comuna_id", using: :btree
+  add_index "usuario", ["reset_password_token"], name: "index_usuario_on_reset_password_token", unique: true, using: :btree
+  add_index "usuario", ["usuario_e_mail"], name: "index_usuario_on_usuario_e_mail", unique: true, using: :btree
+  add_index "usuario", ["usuario_id"], name: "index_usuario_on_usuario_id", using: :btree
 
   create_table "valors", force: true do |t|
     t.integer  "valor_id"

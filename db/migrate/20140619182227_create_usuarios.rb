@@ -1,6 +1,6 @@
 class CreateUsuarios < ActiveRecord::Migration
   def change
-    create_table :usuarios do |t|
+    create_table :usuario do |t|
       t.belongs_to :usuario, index: true
       t.belongs_to :comuna, index: true
       t.string :usuario_nombre

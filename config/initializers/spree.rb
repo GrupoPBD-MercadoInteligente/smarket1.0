@@ -12,3 +12,11 @@ Spree.config do |config|
 end
 
 Spree.user_class = "Usuario"
+
+Spree.config do |config|
+  # Example:
+  # Uncomment to override the default site name.
+  config.site_name = "Smarket"
+  #config.admin_interface_logo = "store/smarket.png"
+  config.logo = "store/smarket.png"
+end

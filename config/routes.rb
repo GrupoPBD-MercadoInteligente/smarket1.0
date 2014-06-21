@@ -117,9 +117,11 @@ Smarket::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  devise_scope :usuarios do
-  get '/login', :to => "devise/sessions#new"
-  get '/signup', :to => "devise/registrations#new"
-  delete '/logout', :to => "devise/sessions#destroy"
-end
+  devise_scope :spree_current_user do
+    get '/entrar' => 'devise/sessions#new', :as => :new_user_session
+    post '/entrar' => 'devise/sessions#create', :as => :user_session
+    get '/salir' => 'devise/sessions#destroy', :as => :destroy_user_session
+    get '/registro' => 'devise/registrations#new', :as => :new_user_registration
+  end
+
 end

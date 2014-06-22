@@ -1,0 +1,34 @@
+
+  <p>
+  <div><%= f.label :usuario_nombre%><br />
+  <%= f.text_field :usuario_nombre , autofocus: true, :class => 'title'%></div>
+  </p>
+
+  <p>
+  <div><%= f.label :usuario_apellidopat %><br />
+  <%= f.text_field :usuario_apellidopat %></div>
+  </p>
+
+  <p>
+  <div><%= f.label :usuario_apellidomat%><br />
+  <%= f.text_field :usuario_apellidomat %></div>
+  </p>
+
+  <p>
+  <%= f.label :email %><br />
+  <%= f.email_field :email, :class => 'title' %>
+  </p>
+
+<div id="password-credentials">
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password, :class => 'title' %>
+  </p>
+
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, :class => 'title' %>
+  </p>
+</div>
+
+<div data-hook="signup_below_password_fields"></div>

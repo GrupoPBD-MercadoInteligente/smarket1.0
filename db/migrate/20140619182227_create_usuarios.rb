@@ -7,7 +7,7 @@ class CreateUsuarios < ActiveRecord::Migration
       t.string :usuario_apellidopat
       t.string :usuario_apellidomat
       t.string :usuario_rut
-      t.string :usuario_e_mail
+      t.string :email
       t.string :usuario_nombre_usuario
       t.string :usuario_contrasena
       t.boolean :usuario_vip

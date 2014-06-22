@@ -32,12 +32,12 @@ class AddDeviseToUsuarios < ActiveRecord::Migration
 
 
       # Uncomment below if timestamps were not included in your original model.
-      #t.timestamps
+      # t.timestamps
     end
 
-    add_index :usuarios, :usuario_e_mail,                unique: true
+    #add_index :usuarios, :email,                unique: true
     add_index :usuarios, :reset_password_token, unique: true
-    add_index :usuarios, :confirmation_token,   unique: true
+    # add_index :usuarios, :confirmation_token,   unique: true
     # add_index :usuarios, :unlock_token,         unique: true
   end
 

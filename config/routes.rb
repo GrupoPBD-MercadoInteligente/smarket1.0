@@ -1,6 +1,4 @@
 Smarket::Application.routes.draw do
-
-  devise_for :usuarios, :controllers => { registrations: 'registrations' }
   # This line mounts Spree's routes at the root of your application.
   # This means, any requests to URLs such as /products, will go to Spree::ProductsController.
   # If you would like to change where this engine is mounted, simply change the :at option to something different.
@@ -122,9 +120,26 @@ Smarket::Application.routes.draw do
     #get '/signup', :to => "devise/registrations#new"
     #delete '/logout', :to => "devise/sessions#destroy"
   #end
-  devise_scope :usuario do
-    get '/login', :to => "devise/sessions#new"
+ # devise_scope :usuario do
+  #  get '/login', :to => "devise/sessions#new"
+   # get '/signup', :to => "devise/registrations#new"
+    #delete '/logout', :to => "devise/sessions#destroy"
+  #end
+  devise_scope :spree_current_user do
+    get '/login', :to => "devise/sessions#new" 
     get '/signup', :to => "devise/registrations#new"
     delete '/logout', :to => "devise/sessions#destroy"
   end
+
+  devise_for :usuarios, :controllers => { registrations: 'registrations' }, :skip => [:sessions, :registrations] 
+  as :usuario do
+    get    "entrar",  to: "devise/sessions#new",         :as => :new_usuario_session
+    post   "entrar",  to: "devise/sessions#create",      :as => :usuario_session
+    delete "salir", to: "devise/sessions#destroy",     :as => :destroy_usuario_session
+ 
+    get    "registrarse",  to: "devise/registrations#new",    :as => :new_usuario_registration
+    post   "registrarse",  to: "devise/registrations#create", :as => :usuario_registration
+  end
+  
+  
 end

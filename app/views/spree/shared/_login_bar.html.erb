@@ -1,12 +1,12 @@
 <% if spree_current_user %>
   <li>
-    <%= link_to t(:salir), spree.logout_path, :method => :delete %>
+    <%= link_to t(:salir), spree_logout_path, :method => :delete %>
   </li>
 <% else %>
   <li>
-    <%= link_to t(:entrar), spree.login_path %>
+    <%= link_to t(:entrar), spree_login_path %>
   </li>
   <li>
-    <%= link_to t(:registrarse), spree.signup_path %>
+    <%= link_to t(:registrarse), spree_signup_path %>
   </li>
 <% end %>

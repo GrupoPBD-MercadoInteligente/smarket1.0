@@ -1,4 +1,4 @@
-
+<% if false %>
   <p>
   <div><%= f.label :usuario_nombre%><br />
   <%= f.text_field :usuario_nombre , autofocus: true, :class => 'title'%></div>
@@ -13,7 +13,7 @@
   <div><%= f.label :usuario_apellidomat%><br />
   <%= f.text_field :usuario_apellidomat %></div>
   </p>
-
+<% end %>
   <p>
   <%= f.label :email %><br />
   <%= f.email_field :email, :class => 'title' %>

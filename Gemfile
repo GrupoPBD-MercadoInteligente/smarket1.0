@@ -32,6 +32,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'therubyracer'
+gem 'less-rails'
+gem 'twitter-bootstrap-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -43,11 +46,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-
-gem 'spree', '2.2.2'
-gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-2-stable'
 gem 'devise'
 gem 'devise-encryptable'
-gem 'spree_auth_devise', :github => 'spree/spree_auth_devise', :branch => '2-2-stable'
-#gem 'spree_fancy', :github => 'spree/spree_fancy', :branch => '2-2-stable'

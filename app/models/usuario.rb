@@ -3,7 +3,7 @@ class Usuario < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
-  self.table_name = 'usuarios'
+  self.table_name = 'usuario'
   self.primary_key = 'id'
   belongs_to :usuario
   belongs_to :comuna

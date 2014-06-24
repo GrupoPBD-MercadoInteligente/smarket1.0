@@ -1,7 +1,29 @@
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Smarket</title>
+  <div class="navbar navbar-static-top">
+  <div class="navbar-inner">
+  <div class="container">
+  	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+  		<span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+  	</a>
+    <a class="brand" href="">Smarket</a>
+    
+    <div class="nav-collapse collapse">
+        <!-- .nav, .navbar-search, .navbar-form, etc -->
+      <ul class="nav">
+      <li> <%= link_to "Home", root_path%></a></li>
+      <li><%= link_to "Productos", productos_path %></li>
+      <li><%= link_to "Entrar", new_usuario_session_path %></li>
+      <li><%= link_to "Registrarse", new_usuario_registration_path %></li>
+    </ul>
+    </div>
+  </div>
+</div>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
@@ -12,3 +34,4 @@
 
 </body>
 </html>
+

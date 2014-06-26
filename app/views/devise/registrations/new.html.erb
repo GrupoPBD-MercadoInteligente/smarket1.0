@@ -2,35 +2,36 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
+
   <div><%= f.label :usuario_nombre_usuario%><br />
-  <%= f.text_field :usuario_nombre_usuario %></div>
+  <%= f.text_field :usuario_nombre_usuario,autofocus: true %></div>
 
   <div><%= f.label :usuario_nombre %><br />
   <%= f.text_field :usuario_nombre , autofocus: true%></div>
 
   <div><%= f.label :usuario_apellidopat %><br />
-  <%= f.text_field :usuario_apellidopat %></div>
+  <%= f.text_field :usuario_apellidopat,autofocus: true %></div>
 
   <div><%= f.label :usuario_apellidomat%><br />
-  <%= f.text_field :usuario_apellidomat %></div>
+  <%= f.text_field :usuario_apellidomat,autofocus: true %></div>
 
-  <div><%= f.label :usuario_apellidomat%><br />
-  <%= f.text_field :usuario_apellidomat %></div>
+  <div><%= f.label :usuario_rut%><br />
+  <%= f.text_field :usuario_rut ,autofocus: true%></div>
 
   <div><%= f.label :usuario_calle%><br />
-  <%= f.text_field :usuario_calle %></div>
+  <%= f.text_field :usuario_calle ,autofocus: true%></div>
 
   <div><%= f.label :usuario_numero_calle%><br />
-  <%= f.text_field :usuario_numero_calle %></div>
+  <%= f.text_field :usuario_numero_calle,autofocus: true %></div>
 
   <div><%= f.label :usuario_villa%><br />
-  <%= f.text_field :usuario_villa %></div>
+  <%= f.text_field :usuario_villa ,autofocus: true%></div>
 
   <div><%= f.label :usuario_numero_depto%><br />
-  <%= f.text_field :usuario_numero_depto %></div>
+  <%= f.text_field :usuario_numero_depto,autofocus: true %></div>
 
   <div><%= f.label :usuario_bloque%><br />
-  <%= f.text_field :usuario_bloque %></div>
+  <%= f.text_field :usuario_bloque ,autofocus: true%></div>
 
 
 

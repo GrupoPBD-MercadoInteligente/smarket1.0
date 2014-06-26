@@ -16,1095 +16,259 @@ ActiveRecord::Schema.define(version: 20140621221755) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "auditoria", force: true do |t|
-    t.integer  "auditoria_id"
-    t.string   "auditoria_usuario"
-    t.string   "auditoria_tabla_mod"
-    t.string   "auditoria_operacion"
-    t.date     "auditoria_fecha"
-    t.string   "auditoria_attr_mod"
-    t.string   "auditoria_antes"
-    t.string   "auditoria_despues"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "clase_unit", primary_key: "clase_id", force: true do |t|
+    t.integer "cla_clase_id"
+    t.string  "clase_nombre", limit: 256
   end
 
-  add_index "auditoria", ["auditoria_id"], name: "index_auditoria_on_auditoria_id", using: :btree
-
-  create_table "clase_units", force: true do |t|
-    t.integer  "clase_id"
-    t.integer  "cla_clase_id"
-    t.string   "clase_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "clase_units", ["cla_clase_id"], name: "index_clase_units_on_cla_clase_id", using: :btree
-  add_index "clase_units", ["clase_id"], name: "index_clase_units_on_clase_id", using: :btree
-
-  create_table "comisions", force: true do |t|
-    t.integer  "comision_id"
-    t.integer  "transaccion_id"
-    t.integer  "comision_monto"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comisions", ["comision_id"], name: "index_comisions_on_comision_id", using: :btree
-  add_index "comisions", ["transaccion_id"], name: "index_comisions_on_transaccion_id", using: :btree
-
-  create_table "compra_remates", force: true do |t|
-    t.integer  "tipo_trans_id"
-    t.integer  "comprasubasta_id"
-    t.integer  "usuario_id"
-    t.integer  "prod_sub_id"
-    t.integer  "usu_usuario_id"
-    t.date     "comprasubasta_fecha"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "compra_remates", ["comprasubasta_id"], name: "index_compra_remates_on_comprasubasta_id", using: :btree
-  add_index "compra_remates", ["prod_sub_id"], name: "index_compra_remates_on_prod_sub_id", using: :btree
-  add_index "compra_remates", ["tipo_trans_id"], name: "index_compra_remates_on_tipo_trans_id", using: :btree
-  add_index "compra_remates", ["usu_usuario_id"], name: "index_compra_remates_on_usu_usuario_id", using: :btree
-  add_index "compra_remates", ["usuario_id"], name: "index_compra_remates_on_usuario_id", using: :btree
-
-  create_table "compra_venta_especials", force: true do |t|
-    t.integer  "tipo_trans_id"
-    t.integer  "compraventa_id"
-    t.integer  "usuario_id"
-    t.integer  "prod_of_nec_id"
-    t.integer  "usu_usuario_id"
-    t.date     "compraventanor_fecha"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "compra_venta_especials", ["compraventa_id"], name: "index_compra_venta_especials_on_compraventa_id", using: :btree
-  add_index "compra_venta_especials", ["prod_of_nec_id"], name: "index_compra_venta_especials_on_prod_of_nec_id", using: :btree
-  add_index "compra_venta_especials", ["tipo_trans_id"], name: "index_compra_venta_especials_on_tipo_trans_id", using: :btree
-  add_index "compra_venta_especials", ["usu_usuario_id"], name: "index_compra_venta_especials_on_usu_usuario_id", using: :btree
-  add_index "compra_venta_especials", ["usuario_id"], name: "index_compra_venta_especials_on_usuario_id", using: :btree
-
-  create_table "compra_venta_normals", force: true do |t|
-    t.integer  "tipo_trans_id"
-    t.integer  "compraventa_id2"
-    t.integer  "usuario_id"
-    t.integer  "usu_usuario_id"
-    t.integer  "producto_of_id"
-    t.date     "compraventanor_fecha"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "compra_venta_normals", ["producto_of_id"], name: "index_compra_venta_normals_on_producto_of_id", using: :btree
-  add_index "compra_venta_normals", ["tipo_trans_id"], name: "index_compra_venta_normals_on_tipo_trans_id", using: :btree
-  add_index "compra_venta_normals", ["usu_usuario_id"], name: "index_compra_venta_normals_on_usu_usuario_id", using: :btree
-  add_index "compra_venta_normals", ["usuario_id"], name: "index_compra_venta_normals_on_usuario_id", using: :btree
-
-  create_table "comunas", force: true do |t|
-    t.integer  "comuna_id"
-    t.integer  "provincia_id"
-    t.string   "comuna_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comunas", ["comuna_id"], name: "index_comunas_on_comuna_id", using: :btree
-  add_index "comunas", ["provincia_id"], name: "index_comunas_on_provincia_id", using: :btree
-
-  create_table "condicions", force: true do |t|
-    t.integer  "condicion_id"
-    t.integer  "tipo_trans_id"
-    t.float    "condicion_porcentaje_comision"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "condicions", ["condicion_id"], name: "index_condicions_on_condicion_id", using: :btree
-  add_index "condicions", ["tipo_trans_id"], name: "index_condicions_on_tipo_trans_id", using: :btree
-
-  create_table "est_prod_of_necs", force: true do |t|
-    t.integer  "estado_prod_of_necesidad_id"
-    t.string   "estado_prod_of_necesidad_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "est_prod_of_necs", ["estado_prod_of_necesidad_id"], name: "index_est_prod_of_necs_on_estado_prod_of_necesidad_id", using: :btree
-
-  create_table "estado_notificacions", force: true do |t|
-    t.integer  "estado_not_id"
-    t.string   "estado_not_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "estado_notificacions", ["estado_not_id"], name: "index_estado_notificacions_on_estado_not_id", using: :btree
-
-  create_table "estado_remates", force: true do |t|
-    t.integer  "estado_subasta_id"
-    t.string   "estado_subasta_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "estado_remates", ["estado_subasta_id"], name: "index_estado_remates_on_estado_subasta_id", using: :btree
-
-  create_table "ganancia_liquidas", force: true do |t|
-    t.integer  "ganancia_liquida_id"
-    t.integer  "transaccion_id"
-    t.integer  "ganancia_liquida_monto"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "ganancia_liquidas", ["ganancia_liquida_id"], name: "index_ganancia_liquidas_on_ganancia_liquida_id", using: :btree
-  add_index "ganancia_liquidas", ["transaccion_id"], name: "index_ganancia_liquidas_on_transaccion_id", using: :btree
-
-  create_table "notificacions", force: true do |t|
-    t.integer  "notificacion_id"
-    t.integer  "usuario_id"
-    t.integer  "estado_not_id"
-    t.string   "notificacio_titulo"
-    t.string   "notificacion_texto"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "notificacions", ["estado_not_id"], name: "index_notificacions_on_estado_not_id", using: :btree
-  add_index "notificacions", ["notificacion_id"], name: "index_notificacions_on_notificacion_id", using: :btree
-  add_index "notificacions", ["usuario_id"], name: "index_notificacions_on_usuario_id", using: :btree
-
-  create_table "prod_of_necs", force: true do |t|
-    t.integer  "producto_id"
-    t.integer  "prod_of_nec_id"
-    t.integer  "usuario_id"
-    t.integer  "estado_prod_of_necesidad_id"
-    t.integer  "prod_nec_id"
-    t.integer  "prod_of_nec_cantidad"
-    t.integer  "prod_of_nec_precio_unitario"
-    t.date     "prod_of_nec_fecha_publicacion"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "prod_of_necs", ["estado_prod_of_necesidad_id"], name: "index_prod_of_necs_on_estado_prod_of_necesidad_id", using: :btree
-  add_index "prod_of_necs", ["prod_nec_id"], name: "index_prod_of_necs_on_prod_nec_id", using: :btree
-  add_index "prod_of_necs", ["prod_of_nec_id"], name: "index_prod_of_necs_on_prod_of_nec_id", using: :btree
-  add_index "prod_of_necs", ["producto_id"], name: "index_prod_of_necs_on_producto_id", using: :btree
-  add_index "prod_of_necs", ["usuario_id"], name: "index_prod_of_necs_on_usuario_id", using: :btree
-
-  create_table "producto_necesitados", force: true do |t|
-    t.integer  "producto_id"
-    t.integer  "prod_nec_id"
-    t.integer  "usuario_id"
-    t.integer  "prod_nec_cantidad"
-    t.integer  "prod_nec_preciotope"
-    t.date     "prod_nec_fecha_publicacion"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "producto_necesitados", ["prod_nec_id"], name: "index_producto_necesitados_on_prod_nec_id", using: :btree
-  add_index "producto_necesitados", ["producto_id"], name: "index_producto_necesitados_on_producto_id", using: :btree
-  add_index "producto_necesitados", ["usuario_id"], name: "index_producto_necesitados_on_usuario_id", using: :btree
-
-  create_table "producto_ofertados", force: true do |t|
-    t.integer  "producto_id"
-    t.integer  "producto_of_id"
-    t.integer  "usuario_id"
-    t.integer  "producto_of_cantidad"
-    t.integer  "producto_of_precio_unitario"
-    t.date     "producto_of_fecha_publicacion"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "producto_ofertados", ["producto_id"], name: "index_producto_ofertados_on_producto_id", using: :btree
-  add_index "producto_ofertados", ["producto_of_id"], name: "index_producto_ofertados_on_producto_of_id", using: :btree
-  add_index "producto_ofertados", ["usuario_id"], name: "index_producto_ofertados_on_usuario_id", using: :btree
-
-  create_table "producto_rematados", force: true do |t|
-    t.integer  "producto_id"
-    t.integer  "prod_sub_id"
-    t.integer  "prod_sub_cantidad"
-    t.integer  "prod_sub_precio_unitario"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "producto_rematados", ["prod_sub_id"], name: "index_producto_rematados_on_prod_sub_id", using: :btree
-  add_index "producto_rematados", ["producto_id"], name: "index_producto_rematados_on_producto_id", using: :btree
-
-  create_table "productos", force: true do |t|
-    t.integer  "producto_id"
-    t.integer  "clase_id"
-    t.string   "producto_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "productos", ["clase_id"], name: "index_productos_on_clase_id", using: :btree
-  add_index "productos", ["producto_id"], name: "index_productos_on_producto_id", using: :btree
-
-  create_table "propiedadclases", force: true do |t|
-    t.integer  "propiedad_id"
-    t.integer  "clase_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "propiedadclases", ["clase_id"], name: "index_propiedadclases_on_clase_id", using: :btree
-  add_index "propiedadclases", ["propiedad_id"], name: "index_propiedadclases_on_propiedad_id", using: :btree
-
-  create_table "propiedads", force: true do |t|
-    t.integer  "propiedad_id"
-    t.string   "propiedad_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "propiedads", ["propiedad_id"], name: "index_propiedads_on_propiedad_id", using: :btree
-
-  create_table "provincia_units", force: true do |t|
-    t.integer  "provincia_id"
-    t.integer  "region_id"
-    t.string   "provincia_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "provincia_units", ["provincia_id"], name: "index_provincia_units_on_provincia_id", using: :btree
-  add_index "provincia_units", ["region_id"], name: "index_provincia_units_on_region_id", using: :btree
-
-  create_table "pujas", force: true do |t|
-    t.integer  "puja_id"
-    t.integer  "sub_id"
-    t.integer  "usuario_id"
-    t.integer  "puja_valor"
-    t.integer  "puja_correlativo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "pujas", ["puja_id"], name: "index_pujas_on_puja_id", using: :btree
-  add_index "pujas", ["sub_id"], name: "index_pujas_on_sub_id", using: :btree
-  add_index "pujas", ["usuario_id"], name: "index_pujas_on_usuario_id", using: :btree
-
-  create_table "regions", force: true do |t|
-    t.integer  "region_id"
-    t.string   "region_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "regions", ["region_id"], name: "index_regions_on_region_id", using: :btree
-
-  create_table "remates", force: true do |t|
-    t.integer  "sub_id"
-    t.integer  "estado_subasta_id"
-    t.integer  "usuario_id"
-    t.integer  "prod_sub_id"
-    t.integer  "sub_monto_max"
-    t.date     "sub_fecha_inicio"
-    t.date     "sub_fecha_termino"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "remates", ["estado_subasta_id"], name: "index_remates_on_estado_subasta_id", using: :btree
-  add_index "remates", ["prod_sub_id"], name: "index_remates_on_prod_sub_id", using: :btree
-  add_index "remates", ["sub_id"], name: "index_remates_on_sub_id", using: :btree
-  add_index "remates", ["usuario_id"], name: "index_remates_on_usuario_id", using: :btree
-
-  create_table "spree_addresses", force: true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.string   "zipcode"
-    t.string   "phone"
-    t.string   "state_name"
-    t.string   "alternative_phone"
-    t.string   "company"
-    t.integer  "state_id"
-    t.integer  "country_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "spree_addresses", ["firstname"], name: "index_addresses_on_firstname", using: :btree
-  add_index "spree_addresses", ["lastname"], name: "index_addresses_on_lastname", using: :btree
-
-  create_table "spree_adjustments", force: true do |t|
-    t.integer  "source_id"
-    t.string   "source_type"
-    t.integer  "adjustable_id"
-    t.string   "adjustable_type"
-    t.decimal  "amount",          precision: 10, scale: 2
-    t.string   "label"
-    t.boolean  "mandatory"
-    t.boolean  "eligible",                                 default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "state"
-    t.integer  "order_id"
-    t.boolean  "included",                                 default: false
-  end
-
-  add_index "spree_adjustments", ["adjustable_id"], name: "index_adjustments_on_order_id", using: :btree
-  add_index "spree_adjustments", ["source_type", "source_id"], name: "index_spree_adjustments_on_source_type_and_source_id", using: :btree
-
-  create_table "spree_assets", force: true do |t|
-    t.integer  "viewable_id"
-    t.string   "viewable_type"
-    t.integer  "attachment_width"
-    t.integer  "attachment_height"
-    t.integer  "attachment_file_size"
-    t.integer  "position"
-    t.string   "attachment_content_type"
-    t.string   "attachment_file_name"
-    t.string   "type",                    limit: 75
-    t.datetime "attachment_updated_at"
-    t.text     "alt"
-  end
-
-  add_index "spree_assets", ["viewable_id"], name: "index_assets_on_viewable_id", using: :btree
-  add_index "spree_assets", ["viewable_type", "type"], name: "index_assets_on_viewable_type_and_type", using: :btree
-
-  create_table "spree_calculators", force: true do |t|
-    t.string   "type"
-    t.integer  "calculable_id"
-    t.string   "calculable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "spree_calculators", ["calculable_id", "calculable_type"], name: "index_spree_calculators_on_calculable_id_and_calculable_type", using: :btree
-  add_index "spree_calculators", ["id", "type"], name: "index_spree_calculators_on_id_and_type", using: :btree
-
-  create_table "spree_configurations", force: true do |t|
-    t.string   "name"
-    t.string   "type",       limit: 50
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "spree_configurations", ["name", "type"], name: "index_spree_configurations_on_name_and_type", using: :btree
-
-  create_table "spree_countries", force: true do |t|
-    t.string   "iso_name"
-    t.string   "iso"
-    t.string   "iso3"
-    t.string   "name"
-    t.integer  "numcode"
-    t.boolean  "states_required", default: false
-    t.datetime "updated_at"
-  end
-
-  create_table "spree_credit_cards", force: true do |t|
-    t.string   "month"
-    t.string   "year"
-    t.string   "cc_type"
-    t.string   "last_digits"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "address_id"
-    t.string   "gateway_customer_profile_id"
-    t.string   "gateway_payment_profile_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.integer  "user_id"
-    t.integer  "payment_method_id"
-  end
-
-  add_index "spree_credit_cards", ["payment_method_id"], name: "index_spree_credit_cards_on_payment_method_id", using: :btree
-  add_index "spree_credit_cards", ["user_id"], name: "index_spree_credit_cards_on_user_id", using: :btree
-
-  create_table "spree_gateways", force: true do |t|
-    t.string   "type"
-    t.string   "name"
-    t.text     "description"
-    t.boolean  "active",      default: true
-    t.string   "environment", default: "development"
-    t.string   "server",      default: "test"
-    t.boolean  "test_mode",   default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spree_inventory_units", force: true do |t|
-    t.string   "state"
-    t.integer  "variant_id"
-    t.integer  "order_id"
-    t.integer  "shipment_id"
-    t.integer  "return_authorization_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "pending",                 default: true
-    t.integer  "line_item_id"
-  end
-
-  add_index "spree_inventory_units", ["line_item_id"], name: "index_spree_inventory_units_on_line_item_id", using: :btree
-  add_index "spree_inventory_units", ["order_id"], name: "index_inventory_units_on_order_id", using: :btree
-  add_index "spree_inventory_units", ["shipment_id"], name: "index_inventory_units_on_shipment_id", using: :btree
-  add_index "spree_inventory_units", ["variant_id"], name: "index_inventory_units_on_variant_id", using: :btree
-
-  create_table "spree_line_items", force: true do |t|
-    t.integer  "variant_id"
-    t.integer  "order_id"
-    t.integer  "quantity",                                                    null: false
-    t.decimal  "price",                precision: 8,  scale: 2,               null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "currency"
-    t.decimal  "cost_price",           precision: 8,  scale: 2
-    t.integer  "tax_category_id"
-    t.decimal  "adjustment_total",     precision: 10, scale: 2, default: 0.0
-    t.decimal  "additional_tax_total", precision: 10, scale: 2, default: 0.0
-    t.decimal  "promo_total",          precision: 10, scale: 2, default: 0.0
-    t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0, null: false
-    t.decimal  "pre_tax_amount",       precision: 8,  scale: 2
-  end
-
-  add_index "spree_line_items", ["order_id"], name: "index_spree_line_items_on_order_id", using: :btree
-  add_index "spree_line_items", ["variant_id"], name: "index_spree_line_items_on_variant_id", using: :btree
-
-  create_table "spree_log_entries", force: true do |t|
-    t.integer  "source_id"
-    t.string   "source_type"
-    t.text     "details"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spree_option_types", force: true do |t|
-    t.string   "name",         limit: 100
-    t.string   "presentation", limit: 100
-    t.integer  "position",                 default: 0, null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "spree_option_types_prototypes", id: false, force: true do |t|
-    t.integer "prototype_id"
-    t.integer "option_type_id"
-  end
-
-  create_table "spree_option_values", force: true do |t|
-    t.integer  "position"
-    t.string   "name"
-    t.string   "presentation"
-    t.integer  "option_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "spree_option_values", ["option_type_id"], name: "index_spree_option_values_on_option_type_id", using: :btree
-
-  create_table "spree_option_values_variants", id: false, force: true do |t|
-    t.integer "variant_id"
-    t.integer "option_value_id"
-  end
-
-  add_index "spree_option_values_variants", ["variant_id", "option_value_id"], name: "index_option_values_variants_on_variant_id_and_option_value_id", using: :btree
-  add_index "spree_option_values_variants", ["variant_id"], name: "index_spree_option_values_variants_on_variant_id", using: :btree
-
-  create_table "spree_orders", force: true do |t|
-    t.string   "number",                 limit: 32
-    t.decimal  "item_total",                        precision: 10, scale: 2, default: 0.0,     null: false
-    t.decimal  "total",                             precision: 10, scale: 2, default: 0.0,     null: false
-    t.string   "state"
-    t.decimal  "adjustment_total",                  precision: 10, scale: 2, default: 0.0,     null: false
-    t.integer  "user_id"
-    t.datetime "completed_at"
-    t.integer  "bill_address_id"
-    t.integer  "ship_address_id"
-    t.decimal  "payment_total",                     precision: 10, scale: 2, default: 0.0
-    t.integer  "shipping_method_id"
-    t.string   "shipment_state"
-    t.string   "payment_state"
-    t.string   "email"
-    t.text     "special_instructions"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "currency"
-    t.string   "last_ip_address"
-    t.integer  "created_by_id"
-    t.decimal  "shipment_total",                    precision: 10, scale: 2, default: 0.0,     null: false
-    t.decimal  "additional_tax_total",              precision: 10, scale: 2, default: 0.0
-    t.decimal  "promo_total",                       precision: 10, scale: 2, default: 0.0
-    t.string   "channel",                                                    default: "spree"
-    t.decimal  "included_tax_total",                precision: 10, scale: 2, default: 0.0,     null: false
-    t.integer  "item_count",                                                 default: 0
-    t.integer  "approver_id"
-    t.datetime "approved_at"
-    t.boolean  "confirmation_delivered",                                     default: false
-    t.boolean  "considered_risky",                                           default: false
-  end
-
-  add_index "spree_orders", ["completed_at"], name: "index_spree_orders_on_completed_at", using: :btree
-  add_index "spree_orders", ["number"], name: "index_spree_orders_on_number", using: :btree
-  add_index "spree_orders", ["user_id", "created_by_id"], name: "index_spree_orders_on_user_id_and_created_by_id", using: :btree
-  add_index "spree_orders", ["user_id"], name: "index_spree_orders_on_user_id", using: :btree
-
-  create_table "spree_orders_promotions", id: false, force: true do |t|
-    t.integer "order_id"
-    t.integer "promotion_id"
-  end
-
-  create_table "spree_payment_capture_events", force: true do |t|
-    t.decimal  "amount",     precision: 10, scale: 2, default: 0.0
-    t.integer  "payment_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "clase_unit", ["cla_clase_id"], name: "relationship_50_fk", using: :btree
+  add_index "clase_unit", ["clase_id"], name: "clase_pk", unique: true, using: :btree
 
-  add_index "spree_payment_capture_events", ["payment_id"], name: "index_spree_payment_capture_events_on_payment_id", using: :btree
-
-  create_table "spree_payment_methods", force: true do |t|
-    t.string   "type"
-    t.string   "name"
-    t.text     "description"
-    t.boolean  "active",       default: true
-    t.string   "environment",  default: "development"
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "display_on"
-    t.boolean  "auto_capture"
+  create_table "comision", primary_key: "comision_id", force: true do |t|
+    t.integer "transaccion_id", null: false
+    t.integer "comision_monto"
   end
 
-  add_index "spree_payment_methods", ["id", "type"], name: "index_spree_payment_methods_on_id_and_type", using: :btree
-
-  create_table "spree_payments", force: true do |t|
-    t.decimal  "amount",               precision: 10, scale: 2, default: 0.0, null: false
-    t.integer  "order_id"
-    t.integer  "source_id"
-    t.string   "source_type"
-    t.integer  "payment_method_id"
-    t.string   "state"
-    t.string   "response_code"
-    t.string   "avs_response"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "identifier"
-    t.string   "cvv_response_code"
-    t.string   "cvv_response_message"
-    t.decimal  "uncaptured_amount",    precision: 10, scale: 2, default: 0.0
-  end
+  add_index "comision", ["comision_id"], name: "comision_pk", unique: true, using: :btree
+  add_index "comision", ["transaccion_id"], name: "relationship_36_fk", using: :btree
 
-  add_index "spree_payments", ["order_id"], name: "index_spree_payments_on_order_id", using: :btree
-  add_index "spree_payments", ["payment_method_id"], name: "index_spree_payments_on_payment_method_id", using: :btree
-
-  create_table "spree_preferences", force: true do |t|
-    t.text     "value"
-    t.string   "key"
-    t.string   "value_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "compra_remate", primary_key: "comprasubasta_id", force: true do |t|
+    t.integer "tipo_trans_id",       null: false
+    t.integer "usuario_id",          null: false
+    t.integer "prod_sub_id",         null: false
+    t.integer "usu_usuario_id",      null: false
+    t.date    "comprasubasta_fecha"
   end
 
-  add_index "spree_preferences", ["key"], name: "index_spree_preferences_on_key", unique: true, using: :btree
+  add_index "compra_remate", ["comprasubasta_id"], name: "comprasubasta_pk", unique: true, using: :btree
+  add_index "compra_remate", ["prod_sub_id"], name: "relationship_39_fk", using: :btree
+  add_index "compra_remate", ["tipo_trans_id"], name: "inheritance_5_fk", using: :btree
+  add_index "compra_remate", ["usu_usuario_id"], name: "relationship_38_fk", using: :btree
+  add_index "compra_remate", ["usuario_id"], name: "relationship_37_fk", using: :btree
 
-  create_table "spree_prices", force: true do |t|
-    t.integer  "variant_id",                         null: false
-    t.decimal  "amount",     precision: 8, scale: 2
-    t.string   "currency"
-    t.datetime "deleted_at"
+  create_table "compra_venta_especial", primary_key: "compraventa_id", force: true do |t|
+    t.integer "tipo_trans_id",        null: false
+    t.integer "usuario_id",           null: false
+    t.integer "prod_of_nec_id",       null: false
+    t.integer "usu_usuario_id",       null: false
+    t.date    "compraventanor_fecha"
   end
 
-  add_index "spree_prices", ["variant_id", "currency"], name: "index_spree_prices_on_variant_id_and_currency", using: :btree
-
-  create_table "spree_product_option_types", force: true do |t|
-    t.integer  "position"
-    t.integer  "product_id"
-    t.integer  "option_type_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "compra_venta_especial", ["compraventa_id"], name: "compra_venta_especial_pk", unique: true, using: :btree
+  add_index "compra_venta_especial", ["prod_of_nec_id"], name: "relationship_46_fk", using: :btree
+  add_index "compra_venta_especial", ["tipo_trans_id"], name: "inheritance_6_fk", using: :btree
+  add_index "compra_venta_especial", ["usu_usuario_id"], name: "relationship_27_fk", using: :btree
+  add_index "compra_venta_especial", ["usuario_id"], name: "relationship_20_fk", using: :btree
 
-  create_table "spree_product_properties", force: true do |t|
-    t.string   "value"
-    t.integer  "product_id"
-    t.integer  "property_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "position",    default: 0
+  create_table "compra_venta_normal", primary_key: "compraventa_id2", force: true do |t|
+    t.integer "tipo_trans_id",        null: false
+    t.integer "usuario_id",           null: false
+    t.integer "usu_usuario_id",       null: false
+    t.integer "producto_of_id",       null: false
+    t.date    "compraventanor_fecha"
   end
 
-  add_index "spree_product_properties", ["product_id"], name: "index_product_properties_on_product_id", using: :btree
-
-  create_table "spree_products", force: true do |t|
-    t.string   "name",                 default: "", null: false
-    t.text     "description"
-    t.datetime "available_on"
-    t.datetime "deleted_at"
-    t.string   "slug"
-    t.text     "meta_description"
-    t.string   "meta_keywords"
-    t.integer  "tax_category_id"
-    t.integer  "shipping_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "compra_venta_normal", ["compraventa_id2"], name: "compra_venta_normal_pk", unique: true, using: :btree
+  add_index "compra_venta_normal", ["producto_of_id"], name: "relationship_30_fk", using: :btree
+  add_index "compra_venta_normal", ["tipo_trans_id"], name: "inheritance_7_fk", using: :btree
+  add_index "compra_venta_normal", ["usu_usuario_id"], name: "relationship_32_fk", using: :btree
+  add_index "compra_venta_normal", ["usuario_id"], name: "relationship_31_fk", using: :btree
 
-  add_index "spree_products", ["available_on"], name: "index_spree_products_on_available_on", using: :btree
-  add_index "spree_products", ["deleted_at"], name: "index_spree_products_on_deleted_at", using: :btree
-  add_index "spree_products", ["name"], name: "index_spree_products_on_name", using: :btree
-  add_index "spree_products", ["slug"], name: "index_spree_products_on_slug", using: :btree
-  add_index "spree_products", ["slug"], name: "permalink_idx_unique", unique: true, using: :btree
-
-  create_table "spree_products_promotion_rules", id: false, force: true do |t|
-    t.integer "product_id"
-    t.integer "promotion_rule_id"
+  create_table "comuna", primary_key: "comuna_id", force: true do |t|
+    t.integer "provincia_id",              null: false
+    t.string  "comuna_nombre", limit: 128
   end
 
-  add_index "spree_products_promotion_rules", ["product_id"], name: "index_products_promotion_rules_on_product_id", using: :btree
-  add_index "spree_products_promotion_rules", ["promotion_rule_id"], name: "index_products_promotion_rules_on_promotion_rule_id", using: :btree
+  add_index "comuna", ["comuna_id"], name: "comuna_pk", unique: true, using: :btree
+  add_index "comuna", ["provincia_id"], name: "relationship_35_fk", using: :btree
 
-  create_table "spree_products_taxons", force: true do |t|
-    t.integer "product_id"
-    t.integer "taxon_id"
-    t.integer "position"
+  create_table "condicion", primary_key: "condicion_id", force: true do |t|
+    t.integer "tipo_trans_id",                 null: false
+    t.float   "condicion_porcentaje_comision"
   end
 
-  add_index "spree_products_taxons", ["product_id"], name: "index_spree_products_taxons_on_product_id", using: :btree
-  add_index "spree_products_taxons", ["taxon_id"], name: "index_spree_products_taxons_on_taxon_id", using: :btree
+  add_index "condicion", ["condicion_id"], name: "condicion_pk", unique: true, using: :btree
+  add_index "condicion", ["tipo_trans_id"], name: "relationship_41_fk", using: :btree
 
-  create_table "spree_promotion_action_line_items", force: true do |t|
-    t.integer "promotion_action_id"
-    t.integer "variant_id"
-    t.integer "quantity",            default: 1
+  create_table "est_prod_of_nec", primary_key: "estado_prod_of_necesidad_id", force: true do |t|
+    t.string "estado_prod_of_necesidad_nombre", limit: 256
   end
 
-  create_table "spree_promotion_actions", force: true do |t|
-    t.integer "promotion_id"
-    t.integer "position"
-    t.string  "type"
-  end
+  add_index "est_prod_of_nec", ["estado_prod_of_necesidad_id"], name: "estado_producto_ofertado_para_necesidad_pk", unique: true, using: :btree
 
-  add_index "spree_promotion_actions", ["id", "type"], name: "index_spree_promotion_actions_on_id_and_type", using: :btree
-  add_index "spree_promotion_actions", ["promotion_id"], name: "index_spree_promotion_actions_on_promotion_id", using: :btree
-
-  create_table "spree_promotion_rules", force: true do |t|
-    t.integer  "promotion_id"
-    t.integer  "user_id"
-    t.integer  "product_group_id"
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "code"
+  create_table "estado_notificacion", primary_key: "estado_not_id", force: true do |t|
+    t.string "estado_not_nombre", limit: 128
   end
 
-  add_index "spree_promotion_rules", ["product_group_id"], name: "index_promotion_rules_on_product_group_id", using: :btree
-  add_index "spree_promotion_rules", ["user_id"], name: "index_promotion_rules_on_user_id", using: :btree
-
-  create_table "spree_promotion_rules_users", id: false, force: true do |t|
-    t.integer "user_id"
-    t.integer "promotion_rule_id"
-  end
+  add_index "estado_notificacion", ["estado_not_id"], name: "estado_notificacion_pk", unique: true, using: :btree
 
-  add_index "spree_promotion_rules_users", ["promotion_rule_id"], name: "index_promotion_rules_users_on_promotion_rule_id", using: :btree
-  add_index "spree_promotion_rules_users", ["user_id"], name: "index_promotion_rules_users_on_user_id", using: :btree
-
-  create_table "spree_promotions", force: true do |t|
-    t.string   "description"
-    t.datetime "expires_at"
-    t.datetime "starts_at"
-    t.string   "name"
-    t.string   "type"
-    t.integer  "usage_limit"
-    t.string   "match_policy", default: "all"
-    t.string   "code"
-    t.boolean  "advertise",    default: false
-    t.string   "path"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "estado_remate", primary_key: "estado_subasta_id", force: true do |t|
+    t.string "estado_subasta_nombre", limit: 256
   end
 
-  add_index "spree_promotions", ["id", "type"], name: "index_spree_promotions_on_id_and_type", using: :btree
+  add_index "estado_remate", ["estado_subasta_id"], name: "estado_subasta_pk", unique: true, using: :btree
 
-  create_table "spree_properties", force: true do |t|
-    t.string   "name"
-    t.string   "presentation", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "ganancia_liquida", primary_key: "ganancia_liquida_id", force: true do |t|
+    t.integer "transaccion_id",         null: false
+    t.integer "ganancia_liquida_monto"
   end
 
-  create_table "spree_properties_prototypes", id: false, force: true do |t|
-    t.integer "prototype_id"
-    t.integer "property_id"
-  end
-
-  create_table "spree_prototypes", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "ganancia_liquida", ["ganancia_liquida_id"], name: "ganancia_liquida_pk", unique: true, using: :btree
+  add_index "ganancia_liquida", ["transaccion_id"], name: "relationship_42_fk", using: :btree
 
-  create_table "spree_return_authorizations", force: true do |t|
-    t.string   "number"
-    t.string   "state"
-    t.decimal  "amount",            precision: 10, scale: 2, default: 0.0, null: false
-    t.integer  "order_id"
-    t.text     "reason"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "stock_location_id"
+  create_table "notificacion", primary_key: "notificacion_id", force: true do |t|
+    t.integer "usuario_id",                      null: false
+    t.integer "estado_not_id",                   null: false
+    t.string  "notificacio_titulo", limit: 128
+    t.string  "notificacion_texto", limit: 1024
   end
 
-  create_table "spree_roles", force: true do |t|
-    t.string "name"
-  end
+  add_index "notificacion", ["estado_not_id"], name: "relationship_47_fk", using: :btree
+  add_index "notificacion", ["notificacion_id"], name: "notificacion_pk", unique: true, using: :btree
+  add_index "notificacion", ["usuario_id"], name: "relationship_45_fk", using: :btree
 
-  create_table "spree_roles_users", id: false, force: true do |t|
-    t.integer "role_id"
-    t.integer "user_id"
+  create_table "prod_of_nec", primary_key: "prod_of_nec_id", force: true do |t|
+    t.integer "producto_id",                   null: false
+    t.integer "usuario_id",                    null: false
+    t.integer "estado_prod_of_necesidad_id",   null: false
+    t.integer "prod_nec_id",                   null: false
+    t.integer "prod_of_nec_cantidad"
+    t.integer "prod_of_nec_precio_unitario"
+    t.date    "prod_of_nec_fecha_publicacion"
   end
 
-  add_index "spree_roles_users", ["role_id"], name: "index_spree_roles_users_on_role_id", using: :btree
-  add_index "spree_roles_users", ["user_id"], name: "index_spree_roles_users_on_user_id", using: :btree
-
-  create_table "spree_shipments", force: true do |t|
-    t.string   "tracking"
-    t.string   "number"
-    t.decimal  "cost",                 precision: 8,  scale: 2
-    t.datetime "shipped_at"
-    t.integer  "order_id"
-    t.integer  "address_id"
-    t.string   "state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "stock_location_id"
-    t.decimal  "adjustment_total",     precision: 10, scale: 2, default: 0.0
-    t.decimal  "additional_tax_total", precision: 10, scale: 2, default: 0.0
-    t.decimal  "promo_total",          precision: 10, scale: 2, default: 0.0
-    t.decimal  "included_tax_total",   precision: 10, scale: 2, default: 0.0, null: false
-    t.decimal  "pre_tax_amount",       precision: 8,  scale: 2
-  end
+  add_index "prod_of_nec", ["estado_prod_of_necesidad_id"], name: "relationship_54_fk", using: :btree
+  add_index "prod_of_nec", ["prod_nec_id"], name: "relationship_40_fk", using: :btree
+  add_index "prod_of_nec", ["prod_of_nec_id"], name: "producto_ofertado_para_necesidad_pk", unique: true, using: :btree
+  add_index "prod_of_nec", ["producto_id"], name: "inheritance_3_fk", using: :btree
+  add_index "prod_of_nec", ["usuario_id"], name: "relationship_52_fk", using: :btree
 
-  add_index "spree_shipments", ["number"], name: "index_shipments_on_number", using: :btree
-  add_index "spree_shipments", ["order_id"], name: "index_spree_shipments_on_order_id", using: :btree
-  add_index "spree_shipments", ["stock_location_id"], name: "index_spree_shipments_on_stock_location_id", using: :btree
-
-  create_table "spree_shipping_categories", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "producto", primary_key: "producto_id", force: true do |t|
+    t.integer "clase_id"
+    t.string  "producto_nombre", limit: 1024
   end
 
-  create_table "spree_shipping_method_categories", force: true do |t|
-    t.integer  "shipping_method_id",   null: false
-    t.integer  "shipping_category_id", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "producto", ["clase_id"], name: "relationship_14_fk", using: :btree
+  add_index "producto", ["producto_id"], name: "producto_pk", unique: true, using: :btree
 
-  add_index "spree_shipping_method_categories", ["shipping_category_id", "shipping_method_id"], name: "unique_spree_shipping_method_categories", unique: true, using: :btree
-  add_index "spree_shipping_method_categories", ["shipping_method_id"], name: "index_spree_shipping_method_categories_on_shipping_method_id", using: :btree
-
-  create_table "spree_shipping_methods", force: true do |t|
-    t.string   "name"
-    t.string   "display_on"
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "tracking_url"
-    t.string   "admin_name"
-    t.integer  "tax_category_id"
+  create_table "producto_necesitado", primary_key: "prod_nec_id", force: true do |t|
+    t.integer "producto_id",                null: false
+    t.integer "usuario_id",                 null: false
+    t.integer "prod_nec_cantidad"
+    t.integer "prod_nec_preciotope"
+    t.date    "prod_nec_fecha_publicacion"
   end
 
-  create_table "spree_shipping_methods_zones", id: false, force: true do |t|
-    t.integer "shipping_method_id"
-    t.integer "zone_id"
-  end
+  add_index "producto_necesitado", ["prod_nec_id"], name: "producto_necesitado_pk", unique: true, using: :btree
+  add_index "producto_necesitado", ["producto_id"], name: "inheritance_1_fk", using: :btree
+  add_index "producto_necesitado", ["usuario_id"], name: "relationship_43_fk", using: :btree
 
-  create_table "spree_shipping_rates", force: true do |t|
-    t.integer  "shipment_id"
-    t.integer  "shipping_method_id"
-    t.boolean  "selected",                                   default: false
-    t.decimal  "cost",               precision: 8, scale: 2, default: 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "tax_rate_id"
+  create_table "producto_ofertado", primary_key: "producto_of_id", force: true do |t|
+    t.integer "producto_id",                   null: false
+    t.integer "usuario_id",                    null: false
+    t.integer "producto_of_cantidad"
+    t.integer "producto_of_precio_unitario"
+    t.date    "producto_of_fecha_publicacion"
   end
 
-  add_index "spree_shipping_rates", ["shipment_id", "shipping_method_id"], name: "spree_shipping_rates_join_index", unique: true, using: :btree
-
-  create_table "spree_skrill_transactions", force: true do |t|
-    t.string   "email"
-    t.float    "amount"
-    t.string   "currency"
-    t.integer  "transaction_id"
-    t.integer  "customer_id"
-    t.string   "payment_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "producto_ofertado", ["producto_id"], name: "inheritance_4_fk", using: :btree
+  add_index "producto_ofertado", ["producto_of_id"], name: "producto_ofertado_pk", unique: true, using: :btree
+  add_index "producto_ofertado", ["usuario_id"], name: "relationship_44_fk", using: :btree
 
-  create_table "spree_state_changes", force: true do |t|
-    t.string   "name"
-    t.string   "previous_state"
-    t.integer  "stateful_id"
-    t.integer  "user_id"
-    t.string   "stateful_type"
-    t.string   "next_state"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "producto_rematado", primary_key: "prod_sub_id", force: true do |t|
+    t.integer "producto_id",              null: false
+    t.integer "prod_sub_cantidad"
+    t.integer "prod_sub_precio_unitario"
   end
 
-  create_table "spree_states", force: true do |t|
-    t.string   "name"
-    t.string   "abbr"
-    t.integer  "country_id"
-    t.datetime "updated_at"
-  end
+  add_index "producto_rematado", ["prod_sub_id"], name: "producto_subastado_pk", unique: true, using: :btree
+  add_index "producto_rematado", ["producto_id"], name: "inheritance_2_fk", using: :btree
 
-  create_table "spree_stock_items", force: true do |t|
-    t.integer  "stock_location_id"
-    t.integer  "variant_id"
-    t.integer  "count_on_hand",     default: 0,     null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "backorderable",     default: false
-    t.datetime "deleted_at"
+  create_table "propiedad", primary_key: "propiedad_id", force: true do |t|
+    t.string "propiedad_nombre", limit: 1024
   end
 
-  add_index "spree_stock_items", ["stock_location_id", "variant_id"], name: "stock_item_by_loc_and_var_id", using: :btree
-  add_index "spree_stock_items", ["stock_location_id"], name: "index_spree_stock_items_on_stock_location_id", using: :btree
-
-  create_table "spree_stock_locations", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "address1"
-    t.string   "address2"
-    t.string   "city"
-    t.integer  "state_id"
-    t.string   "state_name"
-    t.integer  "country_id"
-    t.string   "zipcode"
-    t.string   "phone"
-    t.boolean  "active",                 default: true
-    t.boolean  "backorderable_default",  default: false
-    t.boolean  "propagate_all_variants", default: true
-    t.string   "admin_name"
-  end
+  add_index "propiedad", ["propiedad_id"], name: "propiedad_pk", unique: true, using: :btree
 
-  create_table "spree_stock_movements", force: true do |t|
-    t.integer  "stock_item_id"
-    t.integer  "quantity",        default: 0
-    t.string   "action"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "originator_id"
-    t.string   "originator_type"
+  create_table "propiedadclase", id: false, force: true do |t|
+    t.integer "propiedad_id", null: false
+    t.integer "clase_id",     null: false
   end
 
-  add_index "spree_stock_movements", ["stock_item_id"], name: "index_spree_stock_movements_on_stock_item_id", using: :btree
-
-  create_table "spree_stock_transfers", force: true do |t|
-    t.string   "type"
-    t.string   "reference"
-    t.integer  "source_location_id"
-    t.integer  "destination_location_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "number"
-  end
+  add_index "propiedadclase", ["clase_id"], name: "relationship_17_fk", using: :btree
+  add_index "propiedadclase", ["propiedad_id"], name: "relationship_18_fk", using: :btree
 
-  add_index "spree_stock_transfers", ["destination_location_id"], name: "index_spree_stock_transfers_on_destination_location_id", using: :btree
-  add_index "spree_stock_transfers", ["number"], name: "index_spree_stock_transfers_on_number", using: :btree
-  add_index "spree_stock_transfers", ["source_location_id"], name: "index_spree_stock_transfers_on_source_location_id", using: :btree
-
-  create_table "spree_tax_categories", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "is_default",  default: false
-    t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "provincia_unit", primary_key: "provincia_id", force: true do |t|
+    t.integer "region_id",                    null: false
+    t.string  "provincia_nombre", limit: 128
   end
 
-  create_table "spree_tax_rates", force: true do |t|
-    t.decimal  "amount",             precision: 8, scale: 5
-    t.integer  "zone_id"
-    t.integer  "tax_category_id"
-    t.boolean  "included_in_price",                          default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.boolean  "show_rate_in_label",                         default: true
-    t.datetime "deleted_at"
-  end
+  add_index "provincia_unit", ["provincia_id"], name: "provincia_pk", unique: true, using: :btree
+  add_index "provincia_unit", ["region_id"], name: "relationship_49_fk", using: :btree
 
-  create_table "spree_taxonomies", force: true do |t|
-    t.string   "name",                   null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "position",   default: 0
+  create_table "puja", primary_key: "puja_id", force: true do |t|
+    t.integer "sub_id",           null: false
+    t.integer "usuario_id",       null: false
+    t.integer "puja_valor"
+    t.integer "puja_correlativo"
   end
 
-  create_table "spree_taxons", force: true do |t|
-    t.integer  "parent_id"
-    t.integer  "position",          default: 0
-    t.string   "name",                          null: false
-    t.string   "permalink"
-    t.integer  "taxonomy_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.string   "icon_file_name"
-    t.string   "icon_content_type"
-    t.integer  "icon_file_size"
-    t.datetime "icon_updated_at"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "meta_title"
-    t.string   "meta_description"
-    t.string   "meta_keywords"
-    t.integer  "depth"
-  end
+  add_index "puja", ["puja_id"], name: "puja_pk", unique: true, using: :btree
+  add_index "puja", ["sub_id"], name: "relationship_48_fk", using: :btree
+  add_index "puja", ["usuario_id"], name: "relationship_4_fk", using: :btree
 
-  add_index "spree_taxons", ["parent_id"], name: "index_taxons_on_parent_id", using: :btree
-  add_index "spree_taxons", ["permalink"], name: "index_taxons_on_permalink", using: :btree
-  add_index "spree_taxons", ["taxonomy_id"], name: "index_taxons_on_taxonomy_id", using: :btree
-
-  create_table "spree_tokenized_permissions", force: true do |t|
-    t.integer  "permissable_id"
-    t.string   "permissable_type"
-    t.string   "token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "region", primary_key: "region_id", force: true do |t|
+    t.string "region_nombre", limit: 128
   end
 
-  add_index "spree_tokenized_permissions", ["permissable_id", "permissable_type"], name: "index_tokenized_name_and_type", using: :btree
-
-  create_table "spree_trackers", force: true do |t|
-    t.string   "environment"
-    t.string   "analytics_id"
-    t.boolean  "active",       default: true
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "region", ["region_id"], name: "region_pk", unique: true, using: :btree
 
-  create_table "spree_users", force: true do |t|
-    t.string   "encrypted_password",     limit: 128
-    t.string   "password_salt",          limit: 128
-    t.string   "email"
-    t.string   "remember_token"
-    t.string   "persistence_token"
-    t.string   "reset_password_token"
-    t.string   "perishable_token"
-    t.integer  "sign_in_count",                      default: 0, null: false
-    t.integer  "failed_attempts",                    default: 0, null: false
-    t.datetime "last_request_at"
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "login"
-    t.integer  "ship_address_id"
-    t.integer  "bill_address_id"
-    t.string   "authentication_token"
-    t.string   "unlock_token"
-    t.datetime "locked_at"
-    t.datetime "remember_created_at"
-    t.datetime "reset_password_sent_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "spree_api_key",          limit: 48
+  create_table "remate", primary_key: "sub_id", force: true do |t|
+    t.integer "estado_subasta_id", null: false
+    t.integer "usuario_id",        null: false
+    t.integer "prod_sub_id",       null: false
+    t.integer "sub_monto_max"
+    t.date    "sub_fecha_inicio"
+    t.date    "sub_fecha_termino"
   end
 
-  add_index "spree_users", ["spree_api_key"], name: "index_spree_users_on_spree_api_key", using: :btree
-
-  create_table "spree_variants", force: true do |t|
-    t.string   "sku",                                     default: "",    null: false
-    t.decimal  "weight",          precision: 8, scale: 2, default: 0.0
-    t.decimal  "height",          precision: 8, scale: 2
-    t.decimal  "width",           precision: 8, scale: 2
-    t.decimal  "depth",           precision: 8, scale: 2
-    t.datetime "deleted_at"
-    t.boolean  "is_master",                               default: false
-    t.integer  "product_id"
-    t.decimal  "cost_price",      precision: 8, scale: 2
-    t.integer  "position"
-    t.string   "cost_currency"
-    t.boolean  "track_inventory",                         default: true
-    t.integer  "tax_category_id"
-    t.datetime "updated_at"
-  end
+  add_index "remate", ["estado_subasta_id"], name: "relationship_13_fk", using: :btree
+  add_index "remate", ["prod_sub_id"], name: "relationship_19_fk", using: :btree
+  add_index "remate", ["sub_id"], name: "subasta_pk", unique: true, using: :btree
+  add_index "remate", ["usuario_id"], name: "relationship_3_fk", using: :btree
 
-  add_index "spree_variants", ["product_id"], name: "index_spree_variants_on_product_id", using: :btree
-  add_index "spree_variants", ["sku"], name: "index_spree_variants_on_sku", using: :btree
-  add_index "spree_variants", ["tax_category_id"], name: "index_spree_variants_on_tax_category_id", using: :btree
-
-  create_table "spree_zone_members", force: true do |t|
-    t.integer  "zoneable_id"
-    t.string   "zoneable_type"
-    t.integer  "zone_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "tipo_transaccion", primary_key: "tipo_trans_id", force: true do |t|
   end
 
-  create_table "spree_zones", force: true do |t|
-    t.string   "name"
-    t.string   "description"
-    t.boolean  "default_tax",        default: false
-    t.integer  "zone_members_count", default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "tipo_transaccion", ["tipo_trans_id"], name: "tipo_transaccion_pk", unique: true, using: :btree
 
-  create_table "tipo_transaccions", force: true do |t|
-    t.integer  "tipo_trans_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "transaccion", primary_key: "transaccion_id", force: true do |t|
+    t.integer "tipo_trans_id"
   end
 
-  add_index "tipo_transaccions", ["tipo_trans_id"], name: "index_tipo_transaccions_on_tipo_trans_id", using: :btree
-
-  create_table "transaccions", force: true do |t|
-    t.integer  "transaccion_id"
-    t.integer  "tipo_trans_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "transaccion", ["tipo_trans_id"], name: "relationship_51_fk", using: :btree
+  add_index "transaccion", ["transaccion_id"], name: "transaccion_pk", unique: true, using: :btree
 
-  add_index "transaccions", ["tipo_trans_id"], name: "index_transaccions_on_tipo_trans_id", using: :btree
-  add_index "transaccions", ["transaccion_id"], name: "index_transaccions_on_transaccion_id", using: :btree
-
-  create_table "usuarios", force: true do |t|
-    t.integer  "usuario_id"
-    t.integer  "comuna_id"
-    t.string   "usuario_nombre"
-    t.string   "usuario_apellidopat"
-    t.string   "usuario_apellidomat"
-    t.string   "usuario_rut"
-    t.string   "email"
-    t.string   "usuario_nombre_usuario"
-    t.string   "password"
+  create_table "usuario", primary_key: "usuario_id", force: true do |t|
+    t.integer  "comuna_id",                                        null: false
+    t.string   "usuario_nombre",         limit: 256
+    t.string   "usuario_apellidopat",    limit: 256
+    t.string   "usuario_apellidomat",    limit: 256
+    t.string   "usuario_rut",            limit: 1024
+    t.string   "email",                  limit: 1024
+    t.string   "usuario_nombre_usuario", limit: 256
+    t.string   "password",               limit: 128
     t.boolean  "usuario_vip"
-    t.string   "usuario_calle"
-    t.integer  "usuario_numero_calle"
-    t.string   "usuario_villa"
-    t.integer  "usuario_numero_depto"
-    t.integer  "usuario_bloque"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "spree_api_key",          limit: 48
-    t.integer  "ship_address_id"
-    t.integer  "bill_address_id"
-    t.string   "encrypted_password",                default: "", null: false
+    t.string   "usuario_calle",          limit: 128
+    t.integer  "usuario_numero_calle",   limit: 2
+    t.string   "usuario_villa",          limit: 128
+    t.integer  "usuario_numero_depto",   limit: 2
+    t.integer  "usuario_bloque",         limit: 2
+    t.string   "encrypted_password",                  default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                     default: 0,  null: false
+    t.integer  "sign_in_count",                       default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -1115,21 +279,18 @@ ActiveRecord::Schema.define(version: 20140621221755) do
     t.string   "unconfirmed_email"
   end
 
-  add_index "usuarios", ["comuna_id"], name: "index_usuarios_on_comuna_id", using: :btree
-  add_index "usuarios", ["reset_password_token"], name: "index_usuarios_on_reset_password_token", unique: true, using: :btree
-  add_index "usuarios", ["usuario_id"], name: "index_usuarios_on_usuario_id", using: :btree
+  add_index "usuario", ["comuna_id"], name: "relationship_34_fk", using: :btree
+  add_index "usuario", ["reset_password_token"], name: "index_usuario_on_reset_password_token", unique: true, using: :btree
+  add_index "usuario", ["usuario_id"], name: "usuario_pk", unique: true, using: :btree
 
-  create_table "valors", force: true do |t|
-    t.integer  "valor_id"
-    t.integer  "propiedad_id"
-    t.integer  "producto_id"
-    t.string   "valor_nombre"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "valor", primary_key: "valor_id", force: true do |t|
+    t.integer "propiedad_id",              null: false
+    t.integer "producto_id",               null: false
+    t.string  "valor_nombre", limit: 1024
   end
 
-  add_index "valors", ["producto_id"], name: "index_valors_on_producto_id", using: :btree
-  add_index "valors", ["propiedad_id"], name: "index_valors_on_propiedad_id", using: :btree
-  add_index "valors", ["valor_id"], name: "index_valors_on_valor_id", using: :btree
+  add_index "valor", ["producto_id"], name: "relationship_15_fk", using: :btree
+  add_index "valor", ["propiedad_id"], name: "relationship_16_fk", using: :btree
+  add_index "valor", ["valor_id"], name: "valor_pk", unique: true, using: :btree
 
 end

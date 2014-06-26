@@ -47,5 +47,6 @@ gem 'twitter-bootstrap-rails'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'rut_validator'
 gem 'devise'
 gem 'devise-encryptable'

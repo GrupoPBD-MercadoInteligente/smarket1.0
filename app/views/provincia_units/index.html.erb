@@ -15,8 +15,8 @@
   <tbody>
     <% @provincia_units.each do |provincia_unit| %>
       <tr>
-        <td><%= provincia_unit.provincia %></td>
-        <td><%= provincia_unit.region %></td>
+        <td><%= provincia_unit.provincia_id %></td>
+        <td><%= provincia_unit.region_id %></td>
         <td><%= provincia_unit.provincia_nombre %></td>
         <td><%= link_to 'Show', provincia_unit %></td>
         <td><%= link_to 'Edit', edit_provincia_unit_path(provincia_unit) %></td>

@@ -15,8 +15,8 @@
   <tbody>
     <% @comunas.each do |comuna| %>
       <tr>
-        <td><%= comuna.comuna %></td>
-        <td><%= comuna.provincia %></td>
+        <td><%= comuna.comuna_id %></td>
+        <td><%= comuna.provincia_id %></td>
         <td><%= comuna.comuna_nombre %></td>
         <td><%= link_to 'Show', comuna %></td>
         <td><%= link_to 'Edit', edit_comuna_path(comuna) %></td>

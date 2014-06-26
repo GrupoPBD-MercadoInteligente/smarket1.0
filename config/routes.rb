@@ -54,7 +54,6 @@ Smarket::Application.routes.draw do
 
   resources :condicions
 
-  resources :auditoria
 
   root :to => "home#index"
   devise_for :usuarios, :controllers => { registrations: 'registrations' }, :skip => [:sessions, :registrations] 

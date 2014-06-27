@@ -1,6 +1,9 @@
 Smarket::Application.routes.draw do
 
 
+  get "home/about"
+  get "home/contacto"
+  get "home/terminos"
   get "home/index"
   resources :tipo_transaccions
 

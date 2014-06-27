@@ -1,8 +1,11 @@
+
 <h2>Registrarse</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+  
+  
   <div><%= f.label :usuario_nombre_usuario%><br />
   <%= f.text_field :usuario_nombre_usuario,autofocus: true %></div>
 
@@ -17,6 +20,60 @@
 
   <div><%= f.label :usuario_rut%><br />
   <%= f.text_field :usuario_rut ,autofocus: true%></div>
+
+  <script type="text/javascript">
+
+  $(function(){
+    var regiones = {
+      <% Region.all.each do | region | %>
+        "<%= region.region_nombre.html_safe %>":{
+          <% region.provincia_units.each do | provincia | %>
+            "<%= provincia.provincia_nombre.html_safe %>":{
+              <% provincia.comunas.each do | comuna | %>
+                <%= comuna.comuna_id %>: "<%= comuna.comuna_nombre %>",
+              <% end %>
+            },
+          <% end %>
+        },
+      <% end %>
+    }
+    $('#provincia_units_region_id').on('change', function(){
+      html = ''
+      region_seleccionada = $('#provincia_units_region_id option:selected').text()
+      console.log(region_seleccionada)
+      $.each(regiones[region_seleccionada], function(key, value){
+        html += '<option>' + key + '</option>'
+      });
+      $('#provincias').html(html);
+      
+    })
+    $('#provincias').on('change', function(){
+      html = ''
+      region_seleccionada = $('#provincia_units_region_id option:selected').text()
+      provincia_seleccionada = $('#provincias option:selected').text()
+      console.log(provincia_seleccionada)
+      $.each(regiones[region_seleccionada][provincia_seleccionada], function(key, value){
+        html += '<option value="' + key+ '">' + value + '</option>'
+      });
+      $('#comunas').html(html);
+    }) 
+  })
+</script>
+<%= collection_select(:provincia_units, :region_id, Region.all, :region_id, :region_nombre , {:prompt => 'Seleccione su región...'}) %>
+
+  <select id="provincias" name = "provincia_units[region_id]">
+  <option value="">Seleccione su provincia...</option>
+  <% Region.first.provincia_units.each do | provincia | %>
+    <option><%= provincia.provincia_nombre %></option>
+  <% end %>
+  </select>
+<!--<%= collection_select(:comunas, :provincia_id, ProvinciaUnit.all, :provincia_id, :provincia_nombre ) %>-->
+  <select id="comunas" name="usuario[comuna_id]">
+  <option value="">Seleccione su comuna...</option>
+  <% ProvinciaUnit.first.comunas.each do | comuna | %>
+    <option value="<%= comuna.comuna_id %>"><%= comuna.comuna_nombre %></option>
+  <% end %>
+  </select>
 
 
   <div><%= f.label :usuario_calle%><br />

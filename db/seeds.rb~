@@ -430,7 +430,7 @@ end
 	{:comuna_id => 339,:provincia_id => 52, :comuna_nombre => "El Monte"},
 	{:comuna_id => 340,:provincia_id => 52, :comuna_nombre => "Isla de Maipo"},
 	{:comuna_id => 341,:provincia_id => 52, :comuna_nombre => "Padre Hurtado"},
-    	{:comuna_id => 342,:provincia_id => 52, :comuna_nombre => "Peñaflor"},
+    {:comuna_id => 342,:provincia_id => 52, :comuna_nombre => "Peñaflor"},
 	{:comuna_id => 343,:provincia_id => 53, :comuna_nombre => "Arica"},
 	{:comuna_id => 344,:provincia_id => 53, :comuna_nombre => "Camarones"},
 	{:comuna_id => 345,:provincia_id => 54, :comuna_nombre => "Putre"},

@@ -27,8 +27,8 @@
   <tbody>
     <% @usuarios.each do |usuario| %>
       <tr>
-        <td><%= usuario.usuario %></td>
-        <td><%= usuario.comuna %></td>
+        <td><%= usuario.usuario_id %></td>
+        <td><%= usuario.comuna.comuna_nombre %></td>
         <td><%= usuario.usuario_nombre %></td>
         <td><%= usuario.usuario_apellidopat %></td>
         <td><%= usuario.usuario_apellidomat %></td>

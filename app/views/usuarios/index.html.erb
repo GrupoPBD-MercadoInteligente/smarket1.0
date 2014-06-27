@@ -18,6 +18,8 @@
       <th>Usuario villa</th>
       <th>Usuario numero depto</th>
       <th>Usuario bloque</th>
+      <th>Usuario avatar</th>
+
       <th></th>
       <th></th>
       <th></th>
@@ -35,13 +37,14 @@
         <td><%= usuario.usuario_rut %></td>
         <td><%= usuario.email %></td>
         <td><%= usuario.usuario_nombre_usuario %></td>
-        <td><%= usuario.password %></td>
+        <td><%= usuario.encrypted_password %></td>
         <td><%= usuario.usuario_vip %></td>
         <td><%= usuario.usuario_calle %></td>
         <td><%= usuario.usuario_numero_calle %></td>
         <td><%= usuario.usuario_villa %></td>
         <td><%= usuario.usuario_numero_depto %></td>
         <td><%= usuario.usuario_bloque %></td>
+        <td><%= usuario.avatar %></td>
         <td><%= link_to 'Show', usuario %></td>
         <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
         <td><%= link_to 'Destroy', usuario, method: :delete, data: { confirm: 'Are you sure?' } %></td>

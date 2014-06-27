@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140621221755) do
+ActiveRecord::Schema.define(version: 20140627170205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20140621221755) do
   create_table "producto", primary_key: "producto_id", force: true do |t|
     t.integer "clase_id"
     t.string  "producto_nombre", limit: 1024
+    t.string  "avatar"
   end
 
   add_index "producto", ["clase_id"], name: "relationship_14_fk", using: :btree
@@ -277,6 +278,7 @@ ActiveRecord::Schema.define(version: 20140621221755) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.string   "avatar"
   end
 
   add_index "usuario", ["comuna_id"], name: "relationship_34_fk", using: :btree

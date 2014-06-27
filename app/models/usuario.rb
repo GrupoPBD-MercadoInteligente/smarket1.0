@@ -1,4 +1,5 @@
 class Usuario < ActiveRecord::Base
+  mount_uploader :avatar, FotoUploader
   include ActiveModel::Validations
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

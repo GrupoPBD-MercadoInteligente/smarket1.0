@@ -1,17 +1,58 @@
-<h2>Entrar</h2>
+        <div class="login">
+          	<div class="wrap">
+				<div class="col_1_of_login span_1_of_login">
+					<h4 class="title">New Customers</h4>
+					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan</p>
+					<div class="button1">
+					   <%= link_to "Crear cuenta", new_usuario_registration_path, :style =>	'background: #555;
+  																	border:none;
+  																	color: #fff;
+  																	padding: 10px 20px;
+  																	cursor: pointer;
+  																	float: right;
+  																	font-family: "Exo 2", sans-serif;
+  																	outline: none;
+  																	font-size: 1em' %>
+					 </div>
+					 <div class="clear"></div>
+				</div>
+				<div class="col_1_of_login span_1_of_login">
+				<div class="login-title">
+	           		<h4 class="title">Login</h4>
+					<div id="loginbox" class="loginbox">
+  						<%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+  							<div>
+  								<%= f.label :Email %><br />
+  								<%= f.email_field :email, autofocus: true, :style => 'width:70%' %>
+  							</div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+ 							<div>
+ 								<%= f.label :Contraseña %><br />
+    							<%= f.password_field :usuario_contrasena, autocomplete: "off", :style => 'width:70%' %>
+    						</div>
 
-  <div><%= f.label :usuario_contrasena %><br />
-    <%= f.password_field :usuario_contrasena, autocomplete: "off" %></div>
+  							<% if devise_mapping.rememberable? -%>
+    						<div>
+    							<%= f.check_box :remember_me %>
+    							<%= f.label :remember_me, :style => 'float:left; outline: none; padding-right:10px; padding-top:3px; ' %>
+    						</div>
+  							<% end %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+  							<div><%= f.submit "Login", :style =>	'background: #555;
+  																	border:none;
+  																	color: #fff;
+  																	padding: 10px 20px;
+  																	cursor: pointer;
+  																	float: right;
+  																	font-family: "Exo 2", sans-serif;
+  																	outline: none;
+  																	font-size: 1em'%></div>
+							<% end %><br>
+							
+					</div>
+			    </div>
+				</div>
+				<div class="clear"></div>
 
-  <div><%= f.submit "Entrar" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+			</div>
+		</div>

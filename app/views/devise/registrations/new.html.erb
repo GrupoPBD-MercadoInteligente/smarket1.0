@@ -1,6 +1,6 @@
-
-<h2>Registrarse</h2>
-
+         <div class="register_account">
+            <div class="wrap">
+            <h4 class="title">Registrarse</h4>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -9,25 +9,27 @@
     <%= image_tag(@usuario.avatar) if @usuario.avatar? %>
     <%= f.file_field :avatar %>
   </p>
-  
-  <div><%= f.label :usuario_nombre_usuario%><br />
-  <%= f.text_field :usuario_nombre_usuario,autofocus: true %></div>
+    <br>  
+  <div><br />
+  <%= f.text_field :usuario_nombre_usuario,autofocus: true, :style => 'width:20%', :placeholder => 'Username' %></div>
 
-  <div><%= f.label :usuario_nombre %><br />
-  <%= f.text_field :usuario_nombre , autofocus: true%></div>
+  <div><br />
+  <%= f.text_field :usuario_nombre , autofocus: true, :style => 'width:20%', :placeholder => 'Nombre' %></div>
 
-  <div><%= f.label :usuario_apellidopat %><br />
-  <%= f.text_field :usuario_apellidopat,autofocus: true %></div>
+  <div><br />
+  <%= f.text_field :usuario_apellidopat,autofocus: true, :style => 'width:20%', :placeholder => 'Apellido paterno'  %></div>
 
-  <div><%= f.label :usuario_apellidomat%><br />
-  <%= f.text_field :usuario_apellidomat,autofocus: true %></div>
+  <div><br />
+  <%= f.text_field :usuario_apellidomat,autofocus: true, :style => 'width:20%', :placeholder => 'Apellido materno'  %></div>
 
-  <div><%= f.label :usuario_rut%><br />
-  <%= f.text_field :usuario_rut ,autofocus: true%></div>
+  <div><br />
+  <%= f.text_field :usuario_rut ,autofocus: true, :style => 'width:20%', :placeholder => 'Rut'  %></div>
 
-  <div><%= f.label :comuna_id%><br />
+  <div><br />
   <script type="text/javascript">
   $(function(){
+    $('#provincias').css('width', '20%');
+    $('#comunas').css('width', '20%');
     var cambios_en_provincia = false;
     var regiones = {
       <% Region.all.each do | region | %>
@@ -68,8 +70,9 @@
     }) 
   })
 </script>
-<%= collection_select(:provincia_units, :region_id, Region.all, :region_id, :region_nombre, { :prompt => 'Seleccione región...' } ) %>
+<%= collection_select(:provincia_units, :region_id, Region.all, :region_id, :region_nombre, { :prompt => 'Seleccione región...' }, {:style => 'width:20%'} ) %>
 
+    
   <select id="provincias" disabled>
   <% Region.first.provincia_units.each do | provincia | %>
     <option><%= provincia.provincia_nombre %></option>
@@ -83,37 +86,36 @@
   </select>
 
 
-  <div><%= f.label :usuario_calle%><br />
-  <%= f.text_field :usuario_calle ,autofocus: true%></div>
+  <div><br />
+  <%= f.text_field :usuario_calle ,autofocus: true, :style => 'width:20%', :placeholder => 'Calle'  %></div>
 
-  <div><%= f.label :usuario_numero_calle%><br />
-  <%= f.text_field :usuario_numero_calle,autofocus: true %></div>
+  <div><br />
+  <%= f.text_field :usuario_numero_calle,autofocus: true, :style => 'width:20%', :placeholder => 'Numero de domicilio' %></div>
 
-  <div><%= f.label :usuario_villa%><br />
-  <%= f.text_field :usuario_villa ,autofocus: true%></div>
+  <div><br />
+  <%= f.text_field :usuario_villa ,autofocus: true, :style => 'width:20%', :placeholder => 'Villa'  %></div>
 
-  <div><%= f.label :usuario_numero_depto%><br />
-  <%= f.text_field :usuario_numero_depto,autofocus: true %></div>
+  <div><br />
+  <%= f.text_field :usuario_numero_depto,autofocus: true, :style => 'width:20%', :placeholder => 'Depto'  %></div>
 
-  <div><%= f.label :usuario_bloque%><br />
-  <%= f.text_field :usuario_bloque ,autofocus: true%></div>
+  <div><br />
+  <%= f.text_field :usuario_bloque ,autofocus: true, :style => 'width:20%', :placeholder => 'Block'  %></div>
 
+  <div><br />
+  <%= f.email_field :email, autofocus: true, :style => 'width:20%', :placeholder => 'Email'  %></div>
 
+  <div><br />
+    <%= f.password_field :password, autocomplete: "off", :style => 'width:20%', :placeholder => 'Contraseña'  %></div>
 
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.label :password%><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-    <div><%= f.label :usuario_vip %><br />
+  <div><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off", :style => 'width:20%', :placeholder => 'Confirmar contraseña'  %></div>
+    <br>
+    <div><%= f.label :VIP? %>
     <%= f.check_box :usuario_vip %>
-  <br>
+  <br><br>
   <div><%= f.submit "Registrarse" %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+        </div>
+      </div

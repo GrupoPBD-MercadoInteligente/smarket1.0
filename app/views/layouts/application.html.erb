@@ -46,20 +46,24 @@
         <div class="header-top-left">
 
   
-              <div class="clear"></div>
+        <div class="clear"></div>
          </div>
-       <div class="cssmenu">
-        <% if usuario_signed_in? %>
-          <%= current_usuario.email %>
-          <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
-        <% else %>
-          <ul>
+       <div class="cssmenu" style="list-style:none">
+          <% if usuario_signed_in? %>
             <li class="active">
-              <%= link_to "Login", new_usuario_session_path, {:style=> 'background:#4cb1ca'} %>
-            </li> |
-            <li>
-              <%= link_to "Sign up", new_usuario_registration_path, {:style=> 'background:#4cb1ca'} %>
+              Logged in as <strong><%= current_usuario.email %></strong>
             </li>
+            <li> <%= link_to "Logout", destroy_usuario_session_path, {:style => 'background:#4cb1ca; color:#fff', method: :delete}%>
+            </li>
+            
+          <% else %>
+            <ul>
+              <li class="active">
+                <%= link_to "Login", new_usuario_session_path, {:style=> 'background:#4cb1ca'} %>
+              </li> |
+              <li>
+                <%= link_to "Sign up", new_usuario_registration_path, {:style=> 'background:#4cb1ca'} %>
+              </li>
           </ul>
         <% end %>
       </div>

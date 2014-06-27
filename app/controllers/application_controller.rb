@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   #acts_as_token_authentication_handler_for Usuario, fallback_to_devise: false
 
-  def after_sign_in_path_for(resource)  
-    root_path
-  end
+
  
   protected
   	def configure_permitted_parameters

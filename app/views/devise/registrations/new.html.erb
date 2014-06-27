@@ -5,25 +5,25 @@
   <%= devise_error_messages! %>
 
   <p>
-    <label>Avatar</label>
+    <label>Seleccionar avatar</label><br>
     <%= image_tag(@usuario.avatar) if @usuario.avatar? %>
     <%= f.file_field :avatar %>
   </p>
     <br>  
   <div><br />
-  <%= f.text_field :usuario_nombre_usuario,autofocus: true, :style => 'width:20%', :placeholder => 'Username' %></div>
+  <%= f.text_field :usuario_nombre_usuario,autofocus: true, :required => true, :style => 'width:20%', :placeholder => 'Username' %></div>
 
   <div><br />
-  <%= f.text_field :usuario_nombre , autofocus: true, :style => 'width:20%', :placeholder => 'Nombre' %></div>
+  <%= f.text_field :usuario_nombre , autofocus: true,:required => true, :style => 'width:20%', :placeholder => 'Nombre' %></div>
 
   <div><br />
-  <%= f.text_field :usuario_apellidopat,autofocus: true, :style => 'width:20%', :placeholder => 'Apellido paterno'  %></div>
+  <%= f.text_field :usuario_apellidopat,autofocus: true,:required => true, :style => 'width:20%', :placeholder => 'Apellido paterno'  %></div>
 
   <div><br />
-  <%= f.text_field :usuario_apellidomat,autofocus: true, :style => 'width:20%', :placeholder => 'Apellido materno'  %></div>
+  <%= f.text_field :usuario_apellidomat,autofocus: true,:required => true, :style => 'width:20%', :placeholder => 'Apellido materno'  %></div>
 
   <div><br />
-  <%= f.text_field :usuario_rut ,autofocus: true, :style => 'width:20%', :placeholder => 'Rut'  %></div>
+  <%= f.text_field :usuario_rut ,autofocus: true,:required => true, :style => 'width:20%', :placeholder => 'Rut'  %></div>
 
   <div><br />
   <script type="text/javascript">
@@ -87,28 +87,28 @@
 
 
   <div><br />
-  <%= f.text_field :usuario_calle ,autofocus: true, :style => 'width:20%', :placeholder => 'Calle'  %></div>
+  <%= f.text_field :usuario_calle ,autofocus: true, :required => true, :style => 'width:20%', :placeholder => 'Calle'  %></div>
 
   <div><br />
-  <%= f.text_field :usuario_numero_calle,autofocus: true, :style => 'width:20%', :placeholder => 'Numero de domicilio' %></div>
+  <%= f.text_field :usuario_numero_calle,autofocus: true, :required => true, :style => 'width:20%', :placeholder => 'Numero de domicilio' %></div>
 
   <div><br />
-  <%= f.text_field :usuario_villa ,autofocus: true, :style => 'width:20%', :placeholder => 'Villa'  %></div>
+  <%= f.text_field :usuario_villa ,autofocus: true, :required => true, :style => 'width:20%', :placeholder => 'Villa'  %></div>
 
   <div><br />
-  <%= f.text_field :usuario_numero_depto,autofocus: true, :style => 'width:20%', :placeholder => 'Depto'  %></div>
+  <%= f.text_field :usuario_numero_depto,autofocus: true, :required => true, :style => 'width:20%', :placeholder => 'Depto'  %></div>
 
   <div><br />
-  <%= f.text_field :usuario_bloque ,autofocus: true, :style => 'width:20%', :placeholder => 'Block'  %></div>
+  <%= f.text_field :usuario_bloque ,autofocus: true, :required => true, :style => 'width:20%', :placeholder => 'Block'  %></div>
 
   <div><br />
-  <%= f.email_field :email, autofocus: true, :style => 'width:20%', :placeholder => 'Email'  %></div>
+  <%= f.email_field :email, autofocus: true, :required => true, :style => 'width:20%', :placeholder => 'Email'  %></div>
 
   <div><br />
-    <%= f.password_field :password, autocomplete: "off", :style => 'width:20%', :placeholder => 'Contraseña'  %></div>
+    <%= f.password_field :password, autocomplete: "off", :required => true,:style => 'width:20%', :placeholder => 'Contraseña'  %></div>
 
   <div><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", :style => 'width:20%', :placeholder => 'Confirmar contraseña'  %></div>
+    <%= f.password_field :password_confirmation, autocomplete: "off", :required => true, :style => 'width:20%', :placeholder => 'Confirmar contraseña'  %></div>
     <br>
     <div><%= f.label :VIP? %>
     <%= f.check_box :usuario_vip %>
@@ -116,6 +116,6 @@
   <div><%= f.submit "Registrarse" %></div>
 <% end %>
 
-<%= render "devise/shared/links" %>
         </div>
       </div
+

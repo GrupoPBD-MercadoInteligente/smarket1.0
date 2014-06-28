@@ -1761,4 +1761,6 @@ end
 	{:clase_id => 1318, :cla_clase_id => 1305, :clase_nombre => "Vestidos"},
 	{:clase_id => 1319, :cla_clase_id => 1305, :clase_nombre => "Zapatos"},
 	{:clase_id => 1320, :cla_clase_id => 1305, :clase_nombre => "Otros"},
-]
+].each do |clase_unit|
+	ClaseUnit.find_or_create_by(clase_unit)
+end

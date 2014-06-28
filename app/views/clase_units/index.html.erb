@@ -28,4 +28,7 @@
 
 <br>
 
+
 <%= link_to 'New Clase unit', new_clase_unit_path %>
+
+<%= collection_select(:clase_unit, :cla_clase_id,ClaseUnit.find(:all, :conditions => {:cla_clase_id => nil } ),:clase_id,:clase_nombre) %>

@@ -48,14 +48,20 @@
   
         <div class="clear"></div>
          </div>
-       <div class="cssmenu" style="list-style:none">
+       <div class="cssmenu" style="list-style:none; color:#fff;">
+          
           <% if usuario_signed_in? %>
+          <ul>
             <li class="active">
-              Logged in as <strong><%= current_usuario.email %></strong>
+              Logged in as <strong><%= current_usuario.usuario_nombre_usuario %></strong>
+            </li> |
+            <li>
+              <%= link_to "Mi Perfil", home_perfil_path, {:style => 'background:#4cb1ca'} %>
+            </li> |
+            <li> 
+              <%= link_to "Logout", destroy_usuario_session_path, {:style => 'background:#4cb1ca; color:#fff', method: :delete}%>
             </li>
-            <li> <%= link_to "Logout", destroy_usuario_session_path, {:style => 'background:#4cb1ca; color:#fff', method: :delete}%>
-            </li>
-            
+          </ul>  
           <% else %>
             <ul>
               <li class="active">

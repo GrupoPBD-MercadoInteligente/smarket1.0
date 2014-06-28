@@ -1,6 +1,10 @@
 Smarket::Application.routes.draw do
 
 
+  get "home/datoscuenta"
+  get "home/comovender"
+  get "home/comocomprar"
+  get "home/perfil"
   get "home/about"
   get "home/contacto"
   get "home/terminos"

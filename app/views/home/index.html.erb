@@ -7,9 +7,7 @@
    end
 %> 
 
-
-    <!-- start slider -->
-    <div id="fwslider">
+<div id="fwslider">
         <div class="slider_container">
             <div class="slide"> 
                 <!-- Slide image -->
@@ -61,7 +59,6 @@
           <div class="product_image">
             <img src="images/pic.jpg" alt=""/>
           </div>
-                    <div class="sale-box"><span class="on_sale title_shop">New</span></div> 
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -81,7 +78,6 @@
           <div class="product_image">
             <img src="images/pic1.jpg" alt=""/>
           </div>
-            <div class="sale-box"><span class="on_sale title_shop">New</span></div> 
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -101,7 +97,6 @@
           <div class="product_image">
             <img src="images/pic2.jpg" alt=""/>
           </div>
-                    <div class="sale-box"><span class="on_sale title_shop">New</span></div> 
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -125,7 +120,6 @@
           <div class="product_image">
             <img src="images/pic6.jpg" alt=""/>
           </div>
-                     <div class="sale-box"><span class="on_sale title_shop">New</span></div>  
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -145,7 +139,6 @@
           <div class="product_image">
             <img src="images/pic7.jpg" alt=""/>
           </div>
-           <div class="sale-box"><span class="on_sale title_shop">New</span></div>  
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -166,7 +159,6 @@
           <div class="product_image">
             <img src="images/pic8.jpg" alt=""/>
           </div>
-                     <div class="sale-box"><span class="on_sale title_shop">New</span></div>  
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -190,7 +182,6 @@
           <div class="product_image">
             <img src="images/pic3.jpg" alt=""/>
           </div>
-          <div class="sale-box"><span class="on_sale title_shop">New</span></div> 
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -210,7 +201,6 @@
           <div class="product_image">
             <img src="images/pic4.jpg" alt=""/>
           </div>
-           <div class="sale-box"><span class="on_sale title_shop">New</span></div>  
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -230,7 +220,6 @@
           <div class="product_image">
             <img src="images/pic5.jpg" alt=""/>
           </div>
-          <div class="sale-box"><span class="on_sale title_shop">New</span></div> 
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -253,7 +242,6 @@
           <div class="product_image">
             <img src="images/pic8.jpg" alt=""/>
           </div>
-                     <div class="sale-box"><span class="on_sale title_shop">New</span></div>  
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -273,7 +261,6 @@
           <div class="product_image">
             <img src="images/pic4.jpg" alt=""/>
           </div>
-          <div class="sale-box"><span class="on_sale title_shop">New</span></div> 
             <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -293,7 +280,6 @@
           <div class="product_image">
             <img src="images/pic2.jpg" alt=""/>
           </div>
-                     <div class="sale-box"><span class="on_sale title_shop">New</span></div>  
                     <div class="price">
              <div class="cart-left">
               <p class="title">Lorem Ipsum simply</p>
@@ -369,14 +355,11 @@
              <div class="col_1_of_f_1 span_1_of_f_1">
                <div class="section group example">
                  <div class="col_1_of_f_2 span_1_of_f_2">
-                    <h3>Información</h3>
+                    <h3>Ayuda</h3>
                         <ul class="f-list1" style="color:#fff">
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            <li><%= link_to "Como comprar", home_comocomprar_path, {:style => 'background:#39A0B9'}%></li>
+                            <li><%= link_to "Como vender", home_comovender_path, {:style => 'background:#39A0B9'}%></li>
+                            <li><%= link_to "Mi cuenta", home_datoscuenta_path, {:style => 'background:#39A0B9'}%></li>
                         </ul>
                  </div>
                  <div class="col_1_of_f_2 span_1_of_f_2">
@@ -414,7 +397,7 @@
                  <ul>
                     <li class="active"><%= link_to "Sobre nosotros", home_about_path, {:style => 'background: #0b4b5a'}%></li> |
                     <li><%= link_to "Terminos y condiciones", home_terminos_path, {:style => 'background: #0b4b5a'}%></li> |
-                    <li><%= link_to "Contacto", home_contacto_path, {:style => 'background: #0b4b5a'}%></li> 
+                    <li><%= link_to "Políticas de privacidad", home_contacto_path, {:style => 'background: #0b4b5a'}%></li> 
                  </ul>
                 </div>
                 <div class="clear"></div>

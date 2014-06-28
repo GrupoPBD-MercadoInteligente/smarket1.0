@@ -11,9 +11,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
     <link href="<%= base_url %>/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="<%= base_url %>/web/css/form.css" rel="stylesheet" type="text/css" media="all" />
     <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
@@ -53,12 +53,30 @@
           <% if usuario_signed_in? %>
           <ul>
             <li class="active">
-              Logged in as <strong><%= current_usuario.usuario_nombre_usuario %></strong>
-            </li> |
-            <li>
-              <%= link_to "Mi Perfil", home_perfil_path, {:style => 'background:#4cb1ca'} %>
+              <%= link_to current_usuario.usuario_nombre_usuario, home_perfil_path, {:style => 'background:#4cb1ca'} %>
             </li> |
             <li> 
+              <li>
+                <%=link_to "Mis ofertas", producto_ofertados_path, {:style => 'background:#4cb1ca'}  %> 
+              </li> |
+              <li>
+                <%=link_to "Mis necesidades", producto_necesitados_path, {:style => 'background:#4cb1ca'}  %>
+              </li> |
+              <li>
+                <%=link_to "Mis subastas", remates_path, {:style => 'background:#4cb1ca'}  %>
+              </li> |
+              <li>
+                <%=link_to "Mis pujas", pujas_path, {:style => 'background:#4cb1ca'}  %>
+              </li> |
+              <li>
+                <%= link_to "Publicar oferta" %>
+              </li> |
+              <li>
+                <%= link_to "Publicar necesidad" %>
+              </li> |
+              <li>
+                <%= link_to "Crear subasta " %>
+              </li> |
               <%= link_to "Logout", destroy_usuario_session_path, {:style => 'background:#4cb1ca; color:#fff', method: :delete}%>
             </li>
           </ul>  

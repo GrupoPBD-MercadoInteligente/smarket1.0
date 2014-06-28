@@ -278,7 +278,6 @@ ActiveRecord::Schema.define(version: 20140627170205) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.string   "avatar"
   end
 
   add_index "usuario", ["comuna_id"], name: "relationship_34_fk", using: :btree

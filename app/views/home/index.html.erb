@@ -7,6 +7,7 @@
    end
 %> 
 
+
 <div id="fwslider">
         <div class="slider_container">
             <div class="slide"> 
@@ -303,16 +304,33 @@
       <div class="rsidebar span_1_of_left">
 
 
-           <div class="top-border"> </div>
+      <div class="top-border"> </div>
       <div class="sidebar-bottom">
-          <h2 class="m_1">Newsletters<br> Signup</h2>
-          <p class="m_text">Lorem ipsum dolor sit amet, consectetuer</p>
-          <div class="subscribe">
-           <form>
-              <input name="userName" type="text" class="textbox">
-              <input type="submit" value="Subscribe">
-           </form>
-          </div>
+        <% if usuario_signed_in? %>
+          <h2 class="m_1">Bienvenido <%= current_usuario.usuario_nombre_usuario %></h2>
+          <p>
+            Comienza a comprar y vender tus productos sin esperar más. No dejes pasar una gran oportunidad.
+          </p>
+        <% else %>
+          <h2 class="m_1"><%= link_to "Login", new_usuario_session_path, {:style => 'background: #555;
+                                    border:none;
+                                    color: #fff;
+                                    padding: 10px 20px;
+                                    cursor: pointer;
+                                    font-family: "Exo 2", sans-serif;
+                                    outline: none;
+                                    font-size: 1em;
+                                    border-radius: 10px'} %></h2><br><br>
+          <h2 class="m_1"><%= link_to "Sign up", new_usuario_registration_path, {:style =>  'background: #555;
+                                    border:none;
+                                    color: #fff;
+                                    padding: 10px 20px;
+                                    cursor: pointer;
+                                    font-family: "Exo 2", sans-serif;
+                                    outline: none;
+                                    font-size: 1em;
+                                    border-radius: 10px'} %></h2>
+        <% end %>
       </div>
       </div>
      <div class="clear"></div>

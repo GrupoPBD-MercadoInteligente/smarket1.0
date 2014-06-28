@@ -4,17 +4,24 @@ class ClaseUnitsController < ApplicationController
   # GET /clase_units
   # GET /clase_units.json
   def index
-    @clase_units = ClaseUnit.all
+    @clase_unit = nil
+    @clase_units = ClaseUnit.find(:all, :conditions => {:cla_clase_id => nil } )
   end
 
   # GET /clase_units/1
   # GET /clase_units/1.json
   def show
+    # Find the category belonging to the given id
+    @clase_unit = ClaseUnit.find(params[:id])
+    # Grab all sub-categories
+    @clase_units = @clase_unit.subcategorias
+    # We want to reuse the index renderer:
+    render :action => :index
   end
 
   # GET /clase_units/new
   def new
-    @clase_unit = ClaseUnit.new
+   
   end
 
   # GET /clase_units/1/edit

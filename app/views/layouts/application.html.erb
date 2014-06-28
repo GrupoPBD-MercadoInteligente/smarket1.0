@@ -69,13 +69,13 @@
                 <%=link_to "Mis pujas", pujas_path, {:style => 'background:#4cb1ca'}  %>
               </li> |
               <li>
-                <%= link_to "Publicar oferta" %>
+                <%= link_to "Publicar oferta", new_producto_ofertado_path, {:style => 'background:#4cb1ca'} %>
               </li> |
               <li>
-                <%= link_to "Publicar necesidad" %>
+                <%= link_to "Publicar necesidad", new_producto_necesitado_path, {:style => 'background:#4cb1ca'} %>
               </li> |
               <li>
-                <%= link_to "Crear subasta " %>
+                <%= link_to "Crear Remate", new_remate_path, {:style => 'background:#4cb1ca'} %>
               </li> |
               <%= link_to "Logout", destroy_usuario_session_path, {:style => 'background:#4cb1ca; color:#fff', method: :delete}%>
             </li>

@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Clase</th>
-      <th>Cla clase</th>
+      <th>Subclase</th>
       <th>Clase nombre</th>
       <th></th>
       <th></th>
@@ -15,12 +15,14 @@
   <tbody>
     <% @clase_units.each do |clase_unit| %>
       <tr>
+        <%if clase_unit.last == true%>
+          <% link_to 'Ingrese su producto', new_producto(clase_unit)%>
         <td><%= clase_unit.clase_id %></td>
         <td><%= clase_unit.cla_clase_id %></td>
         <td><%= clase_unit.clase_nombre %></td>
         <td><%= link_to 'Show', clase_unit %></td>
         <td><%= link_to 'Edit', edit_clase_unit_path(clase_unit) %></td>
-        <td><%= link_to 'Destroy', clase_unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Destroy', clase_unit, method: :delete, data: { confirm: 'Are you sure?' } %></t>
       </tr>
     <% end %>
   </tbody>

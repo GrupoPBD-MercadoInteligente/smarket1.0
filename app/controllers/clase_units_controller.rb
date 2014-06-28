@@ -8,6 +8,14 @@ class ClaseUnitsController < ApplicationController
     @clase_units = ClaseUnit.find(:all, :conditions => {:cla_clase_id => nil } )
   end
 
+  def last
+    @clase_unit = ClaseUnit.find(params[:id])
+    if(@clase_unit.subcategorias == nil)
+      return true
+    else
+      return false
+  end
+
   # GET /clase_units/1
   # GET /clase_units/1.json
   def show

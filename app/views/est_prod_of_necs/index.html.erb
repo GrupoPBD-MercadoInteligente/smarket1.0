@@ -14,7 +14,7 @@
   <tbody>
     <% @est_prod_of_necs.each do |est_prod_of_nec| %>
       <tr>
-        <td><%= est_prod_of_nec.estado_prod_of_necesidad %></td>
+        <td><%= est_prod_of_nec.estado_prod_of_necesidad_id%></td>
         <td><%= est_prod_of_nec.estado_prod_of_necesidad_nombre %></td>
         <td><%= link_to 'Show', est_prod_of_nec %></td>
         <td><%= link_to 'Edit', edit_est_prod_of_nec_path(est_prod_of_nec) %></td>

@@ -14,7 +14,7 @@
   <tbody>
     <% @estado_remates.each do |estado_remate| %>
       <tr>
-        <td><%= estado_remate.estado_subasta %></td>
+        <td><%= estado_remate.estado_subasta_id %></td>
         <td><%= estado_remate.estado_subasta_nombre %></td>
         <td><%= link_to 'Show', estado_remate %></td>
         <td><%= link_to 'Edit', edit_estado_remate_path(estado_remate) %></td>

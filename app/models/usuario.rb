@@ -18,8 +18,12 @@ class Usuario < ActiveRecord::Base
   validates :usuario_numero_calle, :presence => true
   validates :usuario_villa, :presence => true
 
-  belongs_to :usuario
-  belongs_to :comuna
+  has_many :notificaciones, :class_name => "Notificacion"
+  has_many :producto_necesitados, :class_name => "ProductoNecesitado"
+  has_many :pujas, :class_name =>"Puja"
+  has_many :producto_ofertados
+  has_many :compra_venta_normales
+  has_many :compra_venta_especiales
 
 end
 

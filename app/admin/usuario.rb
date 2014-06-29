@@ -1,6 +1,11 @@
 ActiveAdmin.register Usuario do
 
-  
+  remove_filter :notificaciones
+  remove_filter :producto_necesitados
+  remove_filter :pujas
+  remove_filter :producto_ofertados
+  remove_filter :compra_venta_normales
+  remove_filter :compra_venta_especiales  
   # See permitted parameters documentation:
   # https://github.com/gregbell/active_admin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -21,7 +26,7 @@ ActiveAdmin.register Usuario do
     column "Apellido paterno", :usuario_apellidopat
     column "Apellido materno", :usuario_apellidomat
     column "Email", :email
-  
+
     actions
   end
 end

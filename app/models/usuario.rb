@@ -25,6 +25,8 @@ class Usuario < ActiveRecord::Base
   has_many :compra_venta_normales
   has_many :compra_venta_especiales
 
+
+
 end
 
 

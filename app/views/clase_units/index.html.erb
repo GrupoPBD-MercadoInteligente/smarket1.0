@@ -3,9 +3,9 @@
 <table>
   <thead>
     <tr>
-      <th>Clase</th>
-      <th>Subclase</th>
       <th>Clase nombre</th>
+      <th>Clase id</th>
+      <th>Clase Subclase </th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +15,9 @@
   <tbody>
     <% @clase_units.each do |clase_unit| %>
       <tr>
+        <td><%= clase_unit.clase_nombre %></td>
         <td><%= clase_unit.clase_id %></td>
         <td><%= clase_unit.cla_clase_id %></td>
-        <td><%= clase_unit.clase_nombre %></td>
         <td><%= link_to 'Show', clase_unit %></td>
         <td><%= link_to 'Edit', edit_clase_unit_path(clase_unit) %></td>
         <td><%= link_to 'Destroy', clase_unit, method: :delete, data: { confirm: 'Are you sure?' } %></t>
@@ -28,7 +28,71 @@
 
 <br>
 
-
 <%= link_to 'New Clase unit', new_clase_unit_path %>
 
-<%= collection_select(:clase_unit, :cla_clase_id,ClaseUnit.find(:all, :conditions => {:cla_clase_id => nil } ),:clase_id,:clase_nombre) %>
+
+
+
+ 
+
+<script type="text/javascript">
+  $(function(){
+    var cambio = false
+    var cambios_en_subcategoria = false;
+    var categoriasPri = {
+    <% @clase_units.each do | clase_unit | %>
+       "<%= clase_unit.clase_nombre.html_safe %>":{
+          <% clase_unit.subcategorias.each do | subcategoria | %>
+             "<%= subcategoria.clase_nombre.html_safe %>":{
+              <% subcategoria.subcategorias.each do |subsubcategoria| %>
+                  <%= subsubcategoria.clase_id %>:"<%= subsubcategoria.clase_nombre %>",
+              <%end%>
+              },     
+          <%end%> 
+        },
+    <%end%>
+  };
+    $('#categoria').on('change', function(){        
+        html = ''
+        categoria_seleccionada = $('#categoria option:selected').text()
+        $.each(categoriasPri[categoria_seleccionada],function(key){
+          html += '<option>' + key + '</option>'
+        });      
+        $('#subcategoria').html(html);
+        $('#subcategoria').prop("disabled", false);
+        $('#subsubcategoria').prop("disabled", true);
+        cambios_en_subcategoria = true;
+      })
+      $('#subcategoria').on('change',function(){
+        html=''
+        categoria_seleccionada = $('#categoria option:selected').text()
+        subcategoria_seleccionada = $('#subcategoria option:selected').text()
+        $.each(categoriasPri[categoria_seleccionada][subcategoria_seleccionada], function(key,value){
+          html += '<option value="' + key+ '">' + value + '</option>'
+          if(categoriasPri[categoria_seleccionada][subcategoria_seleccionada]!=null)
+            cambio = true
+        });
+        console.log(cambio)
+        $('#subsubcategoria').html(html);
+        if(cambio==false)
+          $('#subsubcategoria').prop("disabled", true);
+        else
+          if(cambios_en_subcategoria)
+            $('#subsubcategoria').prop("disabled", false);
+        cambio = false
+      })
+})
+</script>
+
+ <select id="categoria" size=20 style="height: 40%">
+      <% @clase_units.each do |clase_unit| %>
+          <option value = "<%=clase_unit.clase_id%>"><%= clase_unit.clase_nombre %></option>
+      <% end %>  
+ </select>
+
+<select id="subcategoria" name= 'producto[clase_id]' size=20 style='height: 40%' disabled>
+</select>
+
+<select id="subsubcategoria" name= 'producto[clase_id]'size=20 style='height: 40%' disabled>
+</select>
+

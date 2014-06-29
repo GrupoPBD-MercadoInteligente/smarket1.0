@@ -4,5 +4,8 @@ class ClaseUnit < ActiveRecord::Base
 
   has_many :subcategorias, :class_name => "ClaseUnit", :foreign_key => "cla_clase_id", :dependent => :destroy
   belongs_to :categoria_padre, :class_name => "ClaseUnit"
+  belongs_to :producto, :class_name => "Producto"
+  has_many :propiedad_clases, :class_name => "Propiedadclase"
+
 end
 

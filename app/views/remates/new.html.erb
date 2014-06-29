@@ -1,5 +1,17 @@
-<h1>New remate</h1>
+<%
+   base_url = request.url
+   if request.path != '/'
+       base_url = base_url.gsub(request.path, '')
+   end
+%>
 
-<%= render 'form' %>
+<link rel="stylesheet" href="<%= base_url %>/soonmf2/style.css" />
 
-<%= link_to 'Back', remates_path %>
+    <div id="wrapper">
+      <div id="content">
+        <h1>Smarket</h1>
+        <p id="o">Esta página está en</p>
+        <h2>Construccion</h2>
+        
+      </div>
+    </div>

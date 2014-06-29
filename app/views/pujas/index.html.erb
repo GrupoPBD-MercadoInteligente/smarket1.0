@@ -1,35 +1,17 @@
-<h1>Listing pujas</h1>
+<%
+   base_url = request.url
+   if request.path != '/'
+       base_url = base_url.gsub(request.path, '')
+   end
+%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Puja</th>
-      <th>Sub</th>
-      <th>Usuario</th>
-      <th>Puja valor</th>
-      <th>Puja correlativo</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<link rel="stylesheet" href="<%= base_url %>/soonmf2/style.css" />
 
-  <tbody>
-    <% @pujas.each do |puja| %>
-      <tr>
-        <td><%= puja.puja %></td>
-        <td><%= puja.sub %></td>
-        <td><%= puja.usuario %></td>
-        <td><%= puja.puja_valor %></td>
-        <td><%= puja.puja_correlativo %></td>
-        <td><%= link_to 'Show', puja %></td>
-        <td><%= link_to 'Edit', edit_puja_path(puja) %></td>
-        <td><%= link_to 'Destroy', puja, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Puja', new_puja_path %>
+    <div id="wrapper">
+      <div id="content">
+        <h1>Smarket</h1>
+        <p id="o">Esta página está en</p>
+        <h2>Construccion</h2>
+        
+      </div>
+    </div>

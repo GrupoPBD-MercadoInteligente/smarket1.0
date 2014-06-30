@@ -7,5 +7,7 @@ class Producto < ActiveRecord::Base
   #acts_as_superclass, :subtype => 'producto_necesitado', :subtype => 'producto_rematado', :subtype => 'producto_ofertado', :subtype => 'prod_of_nec'
   belongs_to :valor, :class_name => "Valor"
   has_many :clases, :class_name => "Clase", :foreign_key => "clase_id"
+
+
 end
 

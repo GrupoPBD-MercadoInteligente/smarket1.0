@@ -1,4 +1,4 @@
-<%= form_for(@producto_ofertado) do |f| %>
+<%= form_for(@producto) do |f| %>
 
 <div class="field">
  <%= f.label :Ingrese_la_categoría_en_la_que_usted_cree_que_se_encuentra_su_producto %><br>
@@ -53,7 +53,7 @@
 })
 </script>
 
-<%= fields_for @producto do |fa| %>
+
 
 <% if @producto.errors.any? %>
     <div id="error_explanation">
@@ -65,11 +65,11 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+<% end %>
 
   <div class="field">
-    <%= fa.label :Seleccione_una_imagen_para_su_producto %><br />
-    <%= fa.file_field :avatar %>
+    <%= f.label :Seleccione_una_imagen_para_su_producto %><br />
+    <%= f.file_field :avatar %>
   </div>
 
    
@@ -86,20 +86,27 @@
 <br> 
 </div>
  <br> 
+ 
 <div class ="field">
-  <br> <%= fa.label :producto_nombre %><br>
-        <%= fa.text_field :producto_nombre %>
+  <br> <%= f.label :producto_nombre %><br>
+        <%= f.text_field :producto_nombre %>
 </div>
-<% end %>
+
+<%= f.fields_for :producto_ofertados do |fa| %>
   <div class="field">
-      <br> <%= f.label :producto_of_cantidad %><br>
-      <%= f.number_field :producto_of_cantidad %>
+      <br> <%= fa.label :producto_of_cantidad %><br>
+      <%= fa.number_field :producto_of_cantidad %>
   </div>
   <div class="field">
-    <%= f.label :producto_of_precio_unitario %><br>
-    <%= f.number_field :producto_of_precio_unitario %>
+    <%= fa.label :producto_of_precio_unitario %><br>
+    <%= fa.number_field :producto_of_precio_unitario %>
   </div>
+
+  <% end %>
+
+
+
   <div class="actions">
-    <%= submit_tag "Ofertar producto" %>
+    <p><%= f.submit "Ofertar producto" %></p>
   </div>
 <% end %>

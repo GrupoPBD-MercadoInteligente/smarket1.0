@@ -15,8 +15,8 @@
   <tbody>
     <% @productos.each do |producto| %>
       <tr>
-        <td><%= producto.producto %></td>
-        <td><%= producto.clase %></td>
+        <td><%= producto.producto_id %></td>
+        <td><%= producto.clase_id %></td>
         <td><%= producto.producto_nombre %></td>
         <td><%= link_to 'Show', producto %></td>
         <td><%= link_to 'Edit', edit_producto_path(producto) %></td>

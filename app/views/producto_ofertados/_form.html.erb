@@ -85,20 +85,25 @@
 <select id="subsubcategoria" name= 'producto[clase_id]'size=20 style='height: 40%' disabled>
 <br> 
 </div>
- <br> 
  
+ <div class ="field">
+  <br> <%= f.label :producto_nombre , 'Nombre del producto'%>
+        <%= f.text_field :producto_nombre %>
+</div>
+
+
 <div class ="field">
-  <br> <%= f.label :producto_nombre %><br>
+  <br> <%= f.label :producto_nombre , 'Nombre del producto'%><br>
         <%= f.text_field :producto_nombre %>
 </div>
 
 <%= f.fields_for :producto_ofertados do |fa| %>
   <div class="field">
-      <br> <%= fa.label :producto_of_cantidad %><br>
+      <br> <%= fa.label :producto_of_cantidad, 'Cantidad de productos'%><br>
       <%= fa.number_field :producto_of_cantidad %>
   </div>
   <div class="field">
-    <%= fa.label :producto_of_precio_unitario %><br>
+    <%= fa.label :producto_of_precio_unitario, 'Precio Unitario' %><br>
     <%= fa.number_field :producto_of_precio_unitario %>
   </div>
 

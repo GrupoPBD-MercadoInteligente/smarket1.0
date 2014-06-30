@@ -1,4 +1,4 @@
-class ProductoOfertado < ActiveRecord::Base
+class ProductoOfertado < Producto
   self.table_name = 'producto_ofertado'
   self.primary_key = 'producto_of_id '
   #inherits_from :producto

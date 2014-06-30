@@ -22,7 +22,8 @@ class ClaseUnitsController < ApplicationController
 
   # GET /clase_units/new
   def new
-   
+    @clase_unit = nil
+    @clase_units = ClaseUnit.find(:all, :conditions => {:cla_clase_id => nil } )
   end
 
   # GET /clase_units/1/edit

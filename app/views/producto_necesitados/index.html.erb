@@ -1,7 +1,23 @@
-<h1>Listing producto_necesitados</h1>
+<div style="padding-left:100px">
+<h1 style="font-size:40px">NECESIDADES</h1><br>
+  <style>
+  table,th,td
+  {
+  border:0px solid black;
+  }
+  th,td
+  {
+  padding:15px;
+  }
+  thead
+  {
+  background:#4cb1ca;
+  color: #fff;
 
-<table>
-  <thead>
+  }
+  </style>
+<table style="width:90%">
+  <thead style="width:100%">
     <tr>
       <th>Producto</th>
       <th>Prod nec</th>
@@ -34,4 +50,24 @@
 
 <br>
 
-<%= link_to 'New Producto necesitado', new_producto_necesitado_path %>
+  <% if usuario_signed_in? %>
+    <%= link_to 'Publica tu Necesidad', clase_units_path, :style =>  'background: #555;
+                                    border:none;
+                                    color: #fff;
+                                    padding: 10px 20px;
+                                    cursor: pointer;
+                                    font-family: "Exo 2", sans-serif;
+                                    outline: none;
+                                    font-size: 1em' %>
+  <% else %>
+    <%= link_to 'Publica tu Necesidad', new_usuario_session_path, :style =>  'background: #555;
+                                    border:none;
+                                    color: #fff;
+                                    padding: 10px 20px;
+                                    cursor: pointer;
+                                    font-family: "Exo 2", sans-serif;
+                                    outline: none;
+                                    font-size: 1em' %>
+    <% end %>
+
+</div>

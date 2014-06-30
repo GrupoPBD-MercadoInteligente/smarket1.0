@@ -1,40 +1,4 @@
 <h1>Listing clase_units</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Clase nombre</th>
-      <th>Clase id</th>
-      <th>Clase Subclase </th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @clase_units.each do |clase_unit| %>
-      <tr>
-        <td><%= clase_unit.clase_nombre %></td>
-        <td><%= clase_unit.clase_id %></td>
-        <td><%= clase_unit.cla_clase_id %></td>
-        <td><%= link_to 'Show', clase_unit %></td>
-        <td><%= link_to 'Edit', edit_clase_unit_path(clase_unit) %></td>
-        <td><%= link_to 'Destroy', clase_unit, method: :delete, data: { confirm: 'Are you sure?' } %></t>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Clase unit', new_clase_unit_path %>
-
-
-
-
- 
-
 <script type="text/javascript">
   $(function(){
     var cambio = false
@@ -94,5 +58,8 @@
 </select>
 
 <select id="subsubcategoria" name= 'producto[clase_id]'size=20 style='height: 40%' disabled>
-</select>
+
+ 
+
+
 

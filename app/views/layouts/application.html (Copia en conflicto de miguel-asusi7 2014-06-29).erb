@@ -1,0 +1,132 @@
+<%
+   base_url = request.url
+   if request.path != '/'
+       base_url = base_url.gsub(request.path, '')
+   end
+%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smarket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+    <link href="<%= base_url %>/web/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="<%= base_url %>/web/css/form.css" rel="stylesheet" type="text/css" media="all" />
+    <link href='http://fonts.googleapis.com/css?family=Exo+2' rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="<%= base_url %>/web/js/jquery1.min.js"></script>
+    <!-- start menu -->
+    <link href="<%= base_url %>/web/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="<%= base_url %>/web/js/megamenu.js"></script>
+    <script>
+    $(document).ready(function(){
+      console.log($(".megamenu"))
+        $(".megamenu").megamenu();
+      });
+    </script>
+    <style type="text/css">
+    .color_fondo_azul{
+      background: #4cb1ca;
+    }
+    </style>
+    <!--start slider -->
+        <link rel="stylesheet" href="<%= base_url %>/web/css/fwslider.css" media="all">
+        <script src="<%= base_url %>/web/js/jquery-ui.min.js"></script>
+        <script src="<%= base_url %>/web/js/css3-mediaqueries.js"></script>
+        <script src="<%= base_url %>/web/js/fwslider.js"></script>
+    <!--end slider -->
+    <script src="<%= base_url %>/web/js/jquery.easydropdown.js"></script>
+</head>
+<body>
+     <div class="header-top">
+     <div class="wrap"> 
+        <div class="header-top-left">
+
+  
+        <div class="clear"></div>
+         </div>
+       <div class="cssmenu" style="list-style:none; color:#fff;">
+          
+          <% if usuario_signed_in? %>
+          <ul>
+            <li class="active">
+              <%= link_to current_usuario.usuario_nombre_usuario, home_perfil_path, {:style => 'background:#4cb1ca'} %>
+            </li> |
+            <li> 
+              <li>
+                <%=link_to "Mis ofertas", producto_ofertados_path, {:style => 'background:#4cb1ca'}  %> 
+              </li> |
+              <li>
+                <%=link_to "Mis necesidades", producto_necesitados_path, {:style => 'background:#4cb1ca'}  %>
+              </li> |
+              <li>
+                <%=link_to "Mis subastas", remates_path, {:style => 'background:#4cb1ca'}  %>
+              </li> |
+              <li>
+                <%=link_to "Mis pujas", pujas_path, {:style => 'background:#4cb1ca'}  %>
+              </li> |
+              <li>
+                <%= link_to "Publicar oferta", clase_units_path, {:style => 'background:#4cb1ca'} %>
+              </li> |
+              <li>
+                <%= link_to "Publicar necesidad", clase_units_path, {:style => 'background:#4cb1ca'} %>
+              </li> |
+              <li>
+                <%= link_to "Crear Remate", new_remate_path, {:style => 'background:#4cb1ca'} %>
+              </li> |
+              <%= link_to "Logout", destroy_usuario_session_path, {:style => 'background:#4cb1ca; color:#fff', method: :delete}%>
+            </li>
+          </ul>  
+          <% else %>
+            <ul>
+              <li class="active">
+                <%= link_to "Login", new_usuario_session_path, {:style=> 'background:#4cb1ca'} %>
+              </li> |
+              <li>
+                <%= link_to "Sign up", new_usuario_registration_path, {:style=> 'background:#4cb1ca'} %>
+              </li>
+          </ul>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="header-bottom">
+      <div class="wrap">
+      <div class="header-bottom-left">
+        <div class="logo">
+          <img src="<%= base_url %>/logo.png" alt=""/>
+        </div>
+        <div class="menu">
+              <ul class="megamenu skyblue">
+      <li class="active grid"><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Ofertas", producto_ofertados_path %>
+        </li>       
+        <li><%= link_to "Necesidades", producto_necesitados_path %>
+        </li>
+        <li><%= link_to "Remates", remates_path %></li>
+      </ul>
+      </div>
+    </div>
+     <div class="header-bottom-right">
+         <div class="search">   
+        <input type="text" name="s" class="textbox" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+        <input type="submit" value="Subscribe" id="submit" name="submit">
+        <div id="response"> </div>
+     </div>
+    <div class="tag-list">
+    </div>
+    </div>
+     <div class="clear"></div>
+     </div>
+  </div>
+
+
+<%= yield %>
+
+</body>
+</html>
+

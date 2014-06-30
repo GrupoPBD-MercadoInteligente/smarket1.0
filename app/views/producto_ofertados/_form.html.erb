@@ -1,10 +1,66 @@
 <%= form_for(@producto_ofertado) do |f| %>
-  <% if @producto_ofertado.errors.any? %>
+
+<div class="field">
+ <%= f.label :Ingrese_la_categoría_en_la_que_usted_cree_que_se_encuentra_su_producto %><br>
+
+  
+  <script type="text/javascript">
+  $(function(){
+    var cambio = false
+    var cambios_en_subcategoria = false;
+    var categoriasPri = {
+    <% @clase_units.each do | clase_unit | %>
+       "<%= clase_unit.clase_nombre.html_safe %>":{
+          <% clase_unit.subcategorias.each do | subcategoria | %>
+             "<%= subcategoria.clase_nombre.html_safe %>":{
+              <% subcategoria.subcategorias.each do |subsubcategoria| %>
+                  <%= subsubcategoria.clase_id %>:"<%= subsubcategoria.clase_nombre %>",
+              <%end%>
+              },     
+          <%end%> 
+        },
+    <%end%>
+  };
+    $('#categoria').on('change', function(){        
+        html = ''
+        categoria_seleccionada = $('#categoria option:selected').text()
+        $.each(categoriasPri[categoria_seleccionada],function(key){
+          html += '<option>' + key + '</option>'
+        });      
+        $('#subcategoria').html(html);
+        $('#subcategoria').prop("disabled", false);
+        $('#subsubcategoria').prop("disabled", true);
+        cambios_en_subcategoria = true;
+      })
+      $('#subcategoria').on('change',function(){
+        html=''
+        categoria_seleccionada = $('#categoria option:selected').text()
+        subcategoria_seleccionada = $('#subcategoria option:selected').text()
+        $.each(categoriasPri[categoria_seleccionada][subcategoria_seleccionada], function(key,value){
+          html += '<option value="' + key+ '">' + value + '</option>'
+          if(categoriasPri[categoria_seleccionada][subcategoria_seleccionada]!=null)
+            cambio = true
+        });
+        console.log(cambio)
+        $('#subsubcategoria').html(html);
+        if(cambio==false)
+          $('#subsubcategoria').prop("disabled", true);
+        else
+          if(cambios_en_subcategoria)
+            $('#subsubcategoria').prop("disabled", false);
+        cambio = false
+      })
+})
+</script>
+
+<%= fields_for @producto do |fa| %>
+
+<% if @producto.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@producto_ofertado.errors.count, "error") %> prohibited this producto_ofertado from being saved:</h2>
+      <h2><%= pluralize(@producto.errors.count, "error") %> prohibited this image from being saved:</h2>
 
       <ul>
-      <% @producto_ofertado.errors.full_messages.each do |msg| %>
+      <% @producto.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -12,30 +68,38 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :producto_id %><br>
-    <%= f.text_field :producto_id %>
+    <%= fa.label :Seleccione_una_imagen_para_su_producto %><br />
+    <%= fa.file_field :avatar %>
   </div>
+
+   
+<select id="categoria" size=20 style="height: 40%">
+      <% @clase_units.each do |clase_unit| %>
+          <option value = "<%=clase_unit.clase_id%>"><%= clase_unit.clase_nombre %></option>
+      <% end %>  
+ </select>
+
+<select id="subcategoria" name= 'producto[clase_id]' size=20 style='height: 40%' disabled>
+</select>
+
+<select id="subsubcategoria" name= 'producto[clase_id]'size=20 style='height: 40%' disabled>
+<br> 
+</div>
+ <br> 
+<div class ="field">
+  <br> <%= fa.label :producto_nombre %><br>
+        <%= fa.text_field :producto_nombre %>
+</div>
+<% end %>
   <div class="field">
-    <%= f.label :producto_of_id %><br>
-    <%= f.text_field :producto_of_id %>
-  </div>
-  <div class="field">
-    <%= f.label :usuario_id %><br>
-    <%= f.text_field :usuario_id %>
-  </div>
-  <div class="field">
-    <%= f.label :producto_of_cantidad %><br>
-    <%= f.number_field :producto_of_cantidad %>
+      <br> <%= f.label :producto_of_cantidad %><br>
+      <%= f.number_field :producto_of_cantidad %>
   </div>
   <div class="field">
     <%= f.label :producto_of_precio_unitario %><br>
     <%= f.number_field :producto_of_precio_unitario %>
   </div>
-  <div class="field">
-    <%= f.label :producto_of_fecha_publicacion %><br>
-    <%= f.date_select :producto_of_fecha_publicacion %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= submit_tag "Ofertar producto" %>
   </div>
 <% end %>

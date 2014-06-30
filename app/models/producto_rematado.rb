@@ -1,7 +1,7 @@
-class ProductoRematado < ActiveRecord::Base
+class ProductoRematado < Producto
   self.table_name = 'producto_rematado'
   self.primary_key = 'id'
   #inherits_from :producto
-  belongs_to :compra_remate
+  has_one :compra_remate
 end
 
